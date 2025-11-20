@@ -79,12 +79,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2344367069271349482, guid: e1cbad39a6479fb429c734ad85e14ba8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dd1d1941c1669af4fb71e6de4f4ced0c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.75, y: 1.8125}
+  m_Size: {x: 1.5, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -102,7 +102,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
@@ -155,25 +155,23 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.75, y: 1.8125}
-    newSize: {x: 1.75, y: 1.8125}
+    oldSize: {x: 1.5, y: 1.5}
+    newSize: {x: 1.5, y: 1.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.26647365, y: 0.82704693}
-      - {x: -0.7916285, y: 0.31031525}
-      - {x: -0.7832912, y: -0.19350958}
-      - {x: -0.57908833, y: -0.64362967}
-      - {x: -0.34544465, y: -0.7403682}
-      - {x: 0.26638794, y: -0.7520127}
-      - {x: 0.5133945, y: -0.81369585}
-      - {x: 0.7081996, y: -0.60692847}
-      - {x: 0.77912295, y: -0.03990239}
-      - {x: 0.5447865, y: 0.42962793}
-      - {x: 0.1665711, y: 0.79369843}
+    - - {x: -0.17190066, y: 0.49114978}
+      - {x: -0.44594797, y: 0.35270995}
+      - {x: -0.601595, y: -0.14657497}
+      - {x: -0.16608208, y: -0.60666156}
+      - {x: 0.20684761, y: -0.556066}
+      - {x: 0.4603532, y: -0.30038163}
+      - {x: 0.55736566, y: 0.10032642}
+      - {x: 0.33933508, y: 0.45245585}
+      - {x: 0.04917015, y: 0.5621577}
   m_UseDelaunayMesh: 0
 --- !u!114 &-8858785690739695699
 MonoBehaviour:
@@ -187,7 +185,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f471b016b607efc419e3e3c7bc322c62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smallerAsteroidPrefab: {fileID: 4589345967613657122, guid: ce916fc56298b4e47bf5477061047278, type: 3}
-  splitCount: 3
-  splitSpeed: 2
-  spawnOffset: 0.5
+  asteroidPrefabs:
+  - {fileID: 4589345967613657122, guid: ce916fc56298b4e47bf5477061047278, type: 3}
+  - {fileID: 4589345967613657122, guid: d95e6f46addde54468b8ce88aa8c152e, type: 3}
+  - {fileID: 4589345967613657122, guid: 7ed3ad9361f9de74ba70e9ddb73b1775, type: 3}
+  spawnCount: 3
+  spawnRadius: 0.5
+  launchForce: 1
+  offscreenLifetime: 2

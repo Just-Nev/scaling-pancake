@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1388493150153528243}
   - component: {fileID: 4417036902652792830}
   - component: {fileID: 2504269372198405913}
+  - component: {fileID: -6136122109056367835}
   m_Layer: 0
   m_Name: Small Asteroid
   m_TagString: Asteroid
@@ -78,12 +79,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2344367069271349482, guid: e1cbad39a6479fb429c734ad85e14ba8, type: 3}
+  m_Sprite: {fileID: 1016452746, guid: b087d89df9ab732469aa6b5cb8f4f942, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.75, y: 1.8125}
+  m_Size: {x: 0.6666667, y: 0.6666667}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -154,23 +155,35 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.75, y: 1.8125}
-    newSize: {x: 1.75, y: 1.8125}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 0.6666667, y: 0.6666667}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.26647365, y: 0.82704693}
-      - {x: -0.7916285, y: 0.31031525}
-      - {x: -0.7832912, y: -0.19350958}
-      - {x: -0.57908833, y: -0.64362967}
+    - - {x: -0.20762964, y: 0.28274208}
+      - {x: -0.6033285, y: 0.027865142}
+      - {x: -0.6832569, y: -0.22881593}
+      - {x: -0.49082273, y: -0.6053812}
       - {x: -0.34544465, y: -0.7403682}
-      - {x: 0.26638794, y: -0.7520127}
-      - {x: 0.5133945, y: -0.81369585}
-      - {x: 0.7081996, y: -0.60692847}
-      - {x: 0.77912295, y: -0.03990239}
-      - {x: 0.5447865, y: 0.42962793}
-      - {x: 0.1665711, y: 0.79369843}
+      - {x: 0.31921023, y: -0.44886455}
+      - {x: 0.5552056, y: -0.2921141}
+      - {x: 0.5855654, y: 0.022072755}
+      - {x: 0.45063657, y: 0.39726382}
+      - {x: 0.1283226, y: 0.48476863}
   m_UseDelaunayMesh: 0
+--- !u!114 &-6136122109056367835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4589345967613657122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cc4b92beeb511848a69f8730791c58b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offscreenLifetime: 2
