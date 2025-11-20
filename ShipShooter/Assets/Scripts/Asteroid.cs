@@ -30,6 +30,13 @@ public class Asteroid : MonoBehaviour
             SplitAsteroid();
             Destroy(gameObject);
         }
+
+        if (collision.gameObject.CompareTag("Boss"))
+        {
+            SplitAsteroid();
+            Destroy(gameObject);
+        }
+
     }
 
     // === SPLITTING LOGIC ===

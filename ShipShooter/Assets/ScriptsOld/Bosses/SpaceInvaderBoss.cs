@@ -1,99 +1,72 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class SpaceInvaderBoss : MonoBehaviour
+public class SimpleBoss : MonoBehaviour
 {
-    public float initialSpeed = 1f;
-    public float speedIncrement = 0.1f;
-    public float distanceToMoveDown = 1f;
-    public float moveDelay = 1f;
-    public float moveSpeedCap = 10f;
-    public float BossHealth = 10f;
-    public float DamageTaken = 0.22f;
-    public bool isDead = false;
-    public GameObject BossHitParticle;
-    public GameObject BossDeathParticle;
-    public GameObject BossHealthBarObj;
-    public Image BossHealthBar;
+    [Header("Movement")]
+    public float speed = 3f;
+    public float moveDownAmount = 0.5f;
+
+    [Header("Screen Wrap")]
+    public float topLimit = 5f;
+    public float bottomLimit = -5f;
 
     private bool movingRight = true;
-    private float moveTimer = 0f;
-    private float currentSpeed;
-    public float reverseChance = 0.1f; // Adjust this value to control the chance of reversal
+
+    private Camera mainCamera;
+    private float screenLeft;
+    private float screenRight;
 
     private void Start()
     {
-        currentSpeed = initialSpeed;
+        mainCamera = Camera.main;
+        float camHeight = mainCamera.orthographicSize;
+        float camWidth = camHeight * mainCamera.aspect;
+
+        screenLeft = -camWidth + 0.5f;
+        screenRight = camWidth - 0.5f;
     }
 
     private void FixedUpdate()
     {
-        moveTimer += Time.fixedDeltaTime;
+        MoveHorizontal();
+        CheckEdges();
+        CheckWrap();
+    }
 
-        if (moveTimer >= moveDelay)
+    private void MoveHorizontal()
+    {
+        Vector3 moveDir = movingRight ? Vector3.right : Vector3.left;
+        transform.Translate(moveDir * speed * Time.fixedDeltaTime);
+    }
+
+    private void CheckEdges()
+    {
+        if (movingRight && transform.position.x >= screenRight)
         {
-            if (movingRight)
-            {
-                transform.Translate(Vector3.right * currentSpeed * Time.fixedDeltaTime);
-
-                //if (transform.position.x >= GameManager.Instance.RightBoundary.position.x)
-                //{
-                //    movingRight = false;
-                //    MoveDown();
-                //}
-            }
-            else
-            {
-                transform.Translate(Vector3.left * currentSpeed * Time.fixedDeltaTime);
-
-                //if (transform.position.x <= GameManager.Instance.LeftBoundary.position.x)
-                //{
-                //    movingRight = true;
-                //    MoveDown();
-                //}
-            }
-
-            // Randomly reverse the movement direction
-            float reverseRoll = Random.value;
-            if (reverseRoll <= reverseChance)
-            {
-                movingRight = !movingRight;
-            }
-
-            moveTimer = 0f;
+            movingRight = false;
+            MoveDown();
+        }
+        else if (!movingRight && transform.position.x <= screenLeft)
+        {
+            movingRight = true;
+            MoveDown();
         }
     }
 
     private void MoveDown()
     {
-        Debug.Log(currentSpeed);
-        transform.Translate(Vector3.down * distanceToMoveDown);
-        if (currentSpeed < moveSpeedCap)
-        {
-            currentSpeed += speedIncrement;
-        }
+        transform.Translate(Vector3.down * moveDownAmount);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void CheckWrap()
     {
-        if (collision.gameObject.CompareTag("Bullet"))
+        if (transform.position.y < bottomLimit)
         {
-            // Instantiate the death particle effect
-            Instantiate(BossHitParticle, transform.position + transform.up * -1.25f, Quaternion.identity);
-            Destroy(collision.gameObject);
-            BossHealth -= DamageTaken;
-            BossHealthBar.fillAmount = BossHealth;
-
-            if (BossHealth <= 0)
-            {
-                isDead = true;
-                // Instantiate the death particle effect
-                BossHealthBarObj.SetActive(false);
-                Instantiate(BossDeathParticle, transform.position, Quaternion.identity);
-                gameObject.SetActive(false);
-            }
+            transform.position = new Vector3(transform.position.x, topLimit, transform.position.z);
         }
     }
+
 }
+
+
+

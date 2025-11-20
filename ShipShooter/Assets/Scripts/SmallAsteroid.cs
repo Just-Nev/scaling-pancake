@@ -23,6 +23,10 @@ public class SmallAsteroid : MonoBehaviour
             Destroy(collision.gameObject);
             Destroy(gameObject);
         }
+        if (collision.gameObject.CompareTag("Boss"))
+        {
+            Destroy(gameObject);
+        }
     }
 
     void Update()
