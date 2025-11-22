@@ -46,18 +46,20 @@ public class PlayerMovementMobile : MonoBehaviour
 
     void Update()
     {
+        HandleScrollWheel();  // Adjust stopDistance
+
         HandleUI();
 
-        bool usedMobile = HandleMobileInput();   // Returns true if mobile controls are active
-        bool usedController = HandleControllerInput(); // True if controller is active
+        bool usedMobile = HandleMobileInput();
+        bool usedController = HandleControllerInput();
 
-        // If neither input method is active  stop flicker
         if (!usedMobile && !usedController)
         {
             StopFlicker();
             cooldownImage.fillAmount = 0f;
         }
     }
+
 
     // -------------------------
     // MOBILE INPUT
@@ -122,6 +124,17 @@ public class PlayerMovementMobile : MonoBehaviour
 
         return true; // Used mobile input this frame
     }
+
+    void HandleScrollWheel()
+    {
+        float scroll = Input.GetAxis("Mouse ScrollWheel"); // Positive or negative
+        if (scroll != 0f)
+        {
+            stopDistance += scroll;      // Increase or decrease
+            stopDistance = Mathf.Clamp(stopDistance, 0.1f, 5f); // Keep it within reasonable limits
+        }
+    }
+
 
     // -------------------------
     // CONTROLLER INPUT

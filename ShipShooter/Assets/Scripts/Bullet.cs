@@ -15,14 +15,19 @@ public class Bullet : MonoBehaviour
         transform.Translate(Vector3.up * speed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        //if (collision.CompareTag("Asteroid"))
-        //{
-        //    Destroy(collision.gameObject); // destroy the asteroid
-        //    Destroy(gameObject);           // destroy the bullet
-        //}
+        if (collision.gameObject.CompareTag("Asteroid"))
+        {
+            // Add points based on ScoreManager settings
+            ScoreManager.Instance.AddPoints(ScoreManager.Instance.pointsPerAsteroid);
+
+
+        }
     }
 }
+
+
+
 
 
