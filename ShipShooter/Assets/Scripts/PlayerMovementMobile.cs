@@ -25,6 +25,7 @@ public class PlayerMovementMobile : MonoBehaviour
     public Sprite defaultSprite;
     public Sprite rocketSprite;
     public float flickerSpeed = 0.1f;
+
     private SpriteRenderer sr;
     private Coroutine flickerRoutine;
 
@@ -45,14 +46,31 @@ public class PlayerMovementMobile : MonoBehaviour
 
     void Update()
     {
-        cooldownImage.transform.position = transform.position + uiOffset;
-        cooldownImage.transform.rotation = Quaternion.identity;
+        HandleUI();
 
+        bool usedMobile = HandleMobileInput();   // Returns true if mobile controls are active
+        bool usedController = HandleControllerInput(); // True if controller is active
+
+        // If neither input method is active  stop flicker
+        if (!usedMobile && !usedController)
+        {
+            StopFlicker();
+            cooldownImage.fillAmount = 0f;
+        }
+    }
+
+    // -------------------------
+    // MOBILE INPUT
+    // -------------------------
+    bool HandleMobileInput()
+    {
         isTouching = false;
 
+        // Touch
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
+
             if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
             {
                 isTouching = true;
@@ -61,6 +79,7 @@ public class PlayerMovementMobile : MonoBehaviour
                 targetPos = worldPos;
             }
         }
+        // Mouse
         else if (Input.GetMouseButton(0))
         {
             isTouching = true;
@@ -69,25 +88,78 @@ public class PlayerMovementMobile : MonoBehaviour
             targetPos = worldPos;
         }
 
-        if (isTouching)
+        if (!isTouching) return false;
+
+        // Movement
+        Vector3 dir = targetPos - transform.position;
+        float dist = dir.magnitude;
+
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, angle - 90f);
+
+        if (dist > stopDistance)
         {
-            Vector3 dir = targetPos - transform.position;
-            float dist = dir.magnitude;
+            transform.position += dir.normalized * moveSpeed * Time.deltaTime;
 
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0f, 0f, angle - 90f);
+            if (flickerRoutine == null)
+                flickerRoutine = StartCoroutine(Flicker());
+        }
+        else
+        {
+            StopFlicker();
+        }
 
-            if (dist > stopDistance)
-            {
-                transform.position += dir.normalized * moveSpeed * Time.deltaTime;
+        // Shooting
+        fireTimer += Time.deltaTime;
+        cooldownImage.fillAmount = fireTimer / fireRate;
 
-                if (flickerRoutine == null)
-                    flickerRoutine = StartCoroutine(Flicker());
-            }
-            else
-            {
-                StopFlicker();
-            }
+        if (fireTimer >= fireRate)
+        {
+            Shoot();
+            fireTimer = 0f;
+            cooldownImage.fillAmount = 0f;
+        }
+
+        return true; // Used mobile input this frame
+    }
+
+    // -------------------------
+    // CONTROLLER INPUT
+    // -------------------------
+    bool HandleControllerInput()
+    {
+        float moveX = Input.GetAxis("Horizontal");
+        float moveY = Input.GetAxis("Vertical");
+
+        float aimX = Input.GetAxis("RightStickHorizontal");
+        float aimY = Input.GetAxis("RightStickVertical");
+
+        bool moved = (moveX != 0 || moveY != 0);
+        bool aimed = (aimX * aimX + aimY * aimY > 0.1f);
+
+        // No controller activity?
+        if (!moved && !aimed)
+            return false;
+
+        // Move
+        if (moved)
+        {
+            Vector3 moveDir = new Vector3(moveX, moveY, 0f);
+            transform.position += moveDir.normalized * moveSpeed * Time.deltaTime;
+
+            if (flickerRoutine == null)
+                flickerRoutine = StartCoroutine(Flicker());
+        }
+        else
+        {
+            StopFlicker();
+        }
+
+        // Aim  shoot
+        if (aimed)
+        {
+            float angle = Mathf.Atan2(aimY, aimX) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, angle - 90);
 
             fireTimer += Time.deltaTime;
             cooldownImage.fillAmount = fireTimer / fireRate;
@@ -99,13 +171,24 @@ public class PlayerMovementMobile : MonoBehaviour
                 cooldownImage.fillAmount = 0f;
             }
         }
-        else
-        {
-            StopFlicker();
-            cooldownImage.fillAmount = 0f;
-        }
+
+        return true; // Used controller this frame
     }
 
+    // -------------------------
+    // UI
+    // -------------------------
+    void HandleUI()
+    {
+        cooldownImage.transform.position = transform.position + uiOffset;
+        cooldownImage.transform.rotation = Quaternion.identity;
+    }
+
+
+
+    // -------------------------
+    // SHOOTING EFFECTS
+    // -------------------------
     void Shoot()
     {
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
@@ -152,4 +235,5 @@ public class PlayerMovementMobile : MonoBehaviour
         sr.sprite = defaultSprite;
     }
 }
+
 
