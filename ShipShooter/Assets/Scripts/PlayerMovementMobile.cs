@@ -15,7 +15,7 @@ public class PlayerMovementMobile : MonoBehaviour
 
     [Header("Cooldown UI")]
     public Image cooldownImage;
-    public Vector3 uiOffset = new Vector3(0f, 1f, 0f);
+    public Vector3 uiOffset = new Vector3(0f, 50f, 0f); // Pixels above player
 
     [Header("Squash & Stretch")]
     public float squashAmount = 0.8f;
@@ -46,9 +46,7 @@ public class PlayerMovementMobile : MonoBehaviour
 
     void Update()
     {
-        HandleScrollWheel();  // Adjust stopDistance
-
-        HandleUI();
+        HandleScrollWheel();
 
         bool usedMobile = HandleMobileInput();
         bool usedController = HandleControllerInput();
@@ -60,6 +58,40 @@ public class PlayerMovementMobile : MonoBehaviour
         }
     }
 
+    void LateUpdate()
+    {
+        if (cooldownImage != null)
+        {
+            Vector3 worldPos = transform.position; // Player world position
+            Vector3 screenPoint = Camera.main.WorldToScreenPoint(worldPos);
+
+            // Convert screen point to canvas space
+            Vector2 canvasPos;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                cooldownImage.canvas.transform as RectTransform,
+                screenPoint,
+                cooldownImage.canvas.worldCamera,
+                out canvasPos
+            );
+
+            // Set position with offset
+            cooldownImage.rectTransform.anchoredPosition = canvasPos + new Vector2(uiOffset.x, uiOffset.y + 80f);
+        }
+    }
+
+
+    // -------------------------
+    // SCROLL WHEEL TO ADJUST STOP DISTANCE
+    // -------------------------
+    void HandleScrollWheel()
+    {
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (scroll != 0f)
+        {
+            stopDistance += scroll;
+            stopDistance = Mathf.Clamp(stopDistance, 1f, 5f);
+        }
+    }
 
     // -------------------------
     // MOBILE INPUT
@@ -68,11 +100,9 @@ public class PlayerMovementMobile : MonoBehaviour
     {
         isTouching = false;
 
-        // Touch
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
-
             if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
             {
                 isTouching = true;
@@ -81,7 +111,6 @@ public class PlayerMovementMobile : MonoBehaviour
                 targetPos = worldPos;
             }
         }
-        // Mouse
         else if (Input.GetMouseButton(0))
         {
             isTouching = true;
@@ -92,7 +121,6 @@ public class PlayerMovementMobile : MonoBehaviour
 
         if (!isTouching) return false;
 
-        // Movement
         Vector3 dir = targetPos - transform.position;
         float dist = dir.magnitude;
 
@@ -111,7 +139,6 @@ public class PlayerMovementMobile : MonoBehaviour
             StopFlicker();
         }
 
-        // Shooting
         fireTimer += Time.deltaTime;
         cooldownImage.fillAmount = fireTimer / fireRate;
 
@@ -122,19 +149,8 @@ public class PlayerMovementMobile : MonoBehaviour
             cooldownImage.fillAmount = 0f;
         }
 
-        return true; // Used mobile input this frame
+        return true;
     }
-
-    void HandleScrollWheel()
-    {
-        float scroll = Input.GetAxis("Mouse ScrollWheel"); // Positive or negative
-        if (scroll != 0f)
-        {
-            stopDistance += scroll;      // Increase or decrease
-            stopDistance = Mathf.Clamp(stopDistance, 0.1f, 5f); // Keep it within reasonable limits
-        }
-    }
-
 
     // -------------------------
     // CONTROLLER INPUT
@@ -150,11 +166,9 @@ public class PlayerMovementMobile : MonoBehaviour
         bool moved = (moveX != 0 || moveY != 0);
         bool aimed = (aimX * aimX + aimY * aimY > 0.1f);
 
-        // No controller activity?
         if (!moved && !aimed)
             return false;
 
-        // Move
         if (moved)
         {
             Vector3 moveDir = new Vector3(moveX, moveY, 0f);
@@ -168,7 +182,6 @@ public class PlayerMovementMobile : MonoBehaviour
             StopFlicker();
         }
 
-        // Aim  shoot
         if (aimed)
         {
             float angle = Mathf.Atan2(aimY, aimX) * Mathf.Rad2Deg;
@@ -185,19 +198,8 @@ public class PlayerMovementMobile : MonoBehaviour
             }
         }
 
-        return true; // Used controller this frame
+        return true;
     }
-
-    // -------------------------
-    // UI
-    // -------------------------
-    void HandleUI()
-    {
-        cooldownImage.transform.position = transform.position + uiOffset;
-        cooldownImage.transform.rotation = Quaternion.identity;
-    }
-
-
 
     // -------------------------
     // SHOOTING EFFECTS
@@ -248,5 +250,8 @@ public class PlayerMovementMobile : MonoBehaviour
         sr.sprite = defaultSprite;
     }
 }
+
+
+
 
 
