@@ -193,6 +193,7 @@ MonoBehaviour:
   - {fileID: 4589345967613657122, guid: ce916fc56298b4e47bf5477061047278, type: 3}
   - {fileID: 4589345967613657122, guid: d95e6f46addde54468b8ce88aa8c152e, type: 3}
   - {fileID: 4589345967613657122, guid: 7ed3ad9361f9de74ba70e9ddb73b1775, type: 3}
+  - {fileID: 8236908995389932146, guid: 8c0b9d2e52ed71246959b1c8f15abe9d, type: 3}
   spawnCount: 3
   spawnRadius: 0.5
   launchForce: 1
