@@ -31,7 +31,13 @@ public class Asteroid : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (collision.gameObject.CompareTag("Boss"))
+
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Boss"))
         {
             SplitAsteroid();
             Destroy(gameObject);

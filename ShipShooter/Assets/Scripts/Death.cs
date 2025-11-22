@@ -4,6 +4,10 @@ using System.Collections;
 
 public class Death : MonoBehaviour
 {
+    [Header("UI")]
+    public GameObject Retry;
+    bool died = false;
+
     [Header("Explosion Effect")]
     public GameObject deathEffect;
 
@@ -23,12 +27,34 @@ public class Death : MonoBehaviour
             originalCamPos = mainCamera.transform.position;
     }
 
+    private void Update()
+    {
+        if (died)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+        }
+
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Asteroid"))
         {
             Die();
         }
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Boss"))
+        {
+            Die();
+        }
+
     }
 
     void Die()
@@ -47,8 +73,10 @@ public class Death : MonoBehaviour
         if (mainCamera != null)
             StartCoroutine(ScreenShake());
 
-        // Optional: restart scene or handle game over
-        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Retry.SetActive(true);
+        died = true;
+
+        
     }
 
     IEnumerator ScreenShake()

@@ -23,10 +23,16 @@ public class SmallAsteroid : MonoBehaviour
             Destroy(collision.gameObject);
             Destroy(gameObject);
         }
-        if (collision.gameObject.CompareTag("Boss"))
+ 
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Boss"))
         {
             Destroy(gameObject);
         }
+
     }
 
     void Update()
