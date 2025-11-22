@@ -10,6 +10,9 @@ public class SmallAsteroid : MonoBehaviour
     private Coroutine offscreenRoutine;
     private Camera cam;
 
+    [Header("Particle")]
+    public GameObject DesParticle;
+
     void Start()
     {
         cam = Camera.main;
@@ -20,6 +23,7 @@ public class SmallAsteroid : MonoBehaviour
         // Bullet destroys small asteroid
         if (collision.gameObject.CompareTag("Bullet"))
         {
+            Instantiate(DesParticle, transform.position, Quaternion.identity);
             Destroy(collision.gameObject);
             Destroy(gameObject);
         }
@@ -30,6 +34,7 @@ public class SmallAsteroid : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Boss"))
         {
+            Instantiate(DesParticle, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 

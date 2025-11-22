@@ -66,6 +66,7 @@ public class Death : MonoBehaviour
         // Disable player visuals and physics
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<Collider2D>().enabled = false;
+        GetComponent<PlayerMovementMobile>().enabled = false;
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb != null) rb.simulated = false;
 
