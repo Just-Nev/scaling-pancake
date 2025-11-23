@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 20447
+  controlID: 28382
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 50}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 20448
+  controlID: 28383
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -220,9 +220,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 78b80000
-      m_LastClickedID: 47224
-      m_ExpandedIDs: 5863f7fff25ff9ffa0f2fdffc4fafffff6b80000
+      m_SelectedIDs: a0b80000eeb70000
+      m_LastClickedID: 47086
+      m_ExpandedIDs: b29befff4cf0fdffa0f2fdffc4fafffff6b8000012b90000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -457,6 +457,7 @@ MonoBehaviour:
     - {fileID: 4435261926313855236, guid: bd9b69a80bc5d80498dbf70b857721cc, type: 2}
     - {fileID: 9022269141991777719, guid: 48535487a452f2f449d0ee0b94fb10b7, type: 2}
     - {fileID: -3153369026420240786, guid: 2466e7ca85faba04cbe4cb4114718443, type: 2}
+    - {fileID: 644665165406268858, guid: 0e292828a82fef14db46d8f558b9671b, type: 2}
     m_ValueSerializationHelper:
     - e00: 1
       e01: 0
@@ -538,10 +539,26 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    - e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 0e292828a82fef14db46d8f558b9671b, type: 2}
+  m_AnimatorController: {fileID: 9100000, guid: d34cf3283053ac3428b2f9dbf3c12b4e, type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: 644665165406268858, guid: 0e292828a82fef14db46d8f558b9671b, type: 2}
+  - m_Target: {fileID: -2544540917919334966, guid: d34cf3283053ac3428b2f9dbf3c12b4e, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}
@@ -1147,9 +1164,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 529.00336, y: 938.664, z: -4.101181}
+    m_Target: {x: -0.32960328, y: 0.12144585, z: 0.040713724}
     speed: 2
-    m_Value: {x: 529.00336, y: 938.664, z: -4.101181}
+    m_Value: {x: -0.32960328, y: 0.12144585, z: 0.040713724}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1199,9 +1216,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 466.68683
+    m_Target: 6.142607
     speed: 2
-    m_Value: 466.68683
+    m_Value: 6.142607
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1382,7 +1399,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Sprites/Enemies
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1392,15 +1409,15 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Sprites/Enemies
   m_LastFoldersGridSize: 96
   m_LastProjectPath: D:\Unity Games\scaling-pancake\ShipShooter
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 139}
-    m_SelectedIDs: 12be0000
-    m_LastClickedID: 48658
+    scrollPos: {x: 0, y: 79}
+    m_SelectedIDs: 1ebe0000
+    m_LastClickedID: 48670
     m_ExpandedIDs: 000000000cbd00000ebd000010bd000018be000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1456,10 +1473,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 78b80000
-    m_LastClickedInstanceID: 47224
+    m_SelectedInstanceIDs: a0b80000eeb70000
+    m_LastClickedInstanceID: 47264
     m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: b2ba0000c4ba000098c2000050b900005ee0000062de00000000000096b3000080b300006cb30000a2e50000581101002eb90000ae020000
+    m_ExpandedInstanceIDs: b2ba0000c4ba000098c2000050b900005ee0000062de00000000000096b3000080b300006cb30000a2e50000581101002eb90000ae020000d687010078900100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1526,7 +1543,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 47224
+  m_LastSelectedObjectID: -1072024
 --- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52
