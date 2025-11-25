@@ -43,6 +43,14 @@ public class Asteroid : MonoBehaviour
             Destroy(gameObject);
         }
 
+        if (col.gameObject.CompareTag("bBullet"))
+        {
+            Destroy(gameObject);
+            SplitAsteroid();
+            Destroy(col.gameObject);
+        }
+
+
     }
 
     // === SPLITTING LOGIC ===

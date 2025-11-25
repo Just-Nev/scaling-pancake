@@ -8,6 +8,7 @@ TagManager:
   - Bullet
   - Boss
   - Coin
+  - bBullet
   layers:
   - Default
   - TransparentFX

@@ -54,6 +54,10 @@ public class Death : MonoBehaviour
         {
             Die();
         }
+        if (col.gameObject.CompareTag("bBullet"))
+        {
+            Die();
+        }
 
     }
 

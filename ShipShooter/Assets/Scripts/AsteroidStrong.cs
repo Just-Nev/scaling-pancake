@@ -41,6 +41,12 @@ public class AsteroidStrong : MonoBehaviour
             Destroy(collision.gameObject);
             TakeDamage(1);
         }
+
+        if (collision.gameObject.CompareTag("bBullet"))
+        {
+            Destroy(collision.gameObject);
+            TakeDamage(maxHealth);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
