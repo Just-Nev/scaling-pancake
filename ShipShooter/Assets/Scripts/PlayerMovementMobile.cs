@@ -36,6 +36,9 @@ public class PlayerMovementMobile : MonoBehaviour
     private bool isSquashing = false;
     private Vector3 originalScale;
 
+    [Header("Controller")]
+    [SerializeField] float rotationSpeed = 720f;
+
     void Start()
     {
         cam = Camera.main;
@@ -152,40 +155,31 @@ public class PlayerMovementMobile : MonoBehaviour
         return true;
     }
 
-    // -------------------------
-    // CONTROLLER INPUT
-    // -------------------------
     bool HandleControllerInput()
     {
-        float moveX = Input.GetAxis("Horizontal");
-        float moveY = Input.GetAxis("Vertical");
+        float stickX = Input.GetAxis("Horizontal");
+        float stickY = Input.GetAxis("Vertical");
 
-        float aimX = Input.GetAxis("RightStickHorizontal");
-        float aimY = Input.GetAxis("RightStickVertical");
+        float leftTrigger = Input.GetAxis("LeftTrigger");
 
-        bool moved = (moveX != 0 || moveY != 0);
-        bool aimed = (aimX * aimX + aimY * aimY > 0.1f);
 
-        if (!moved && !aimed)
-            return false;
+        bool isAiming = leftTrigger > 0.2f;
 
-        if (moved)
-        {
-            Vector3 moveDir = new Vector3(moveX, moveY, 0f);
-            transform.position += moveDir.normalized * moveSpeed * Time.deltaTime;
+        bool stickMoved = (stickX * stickX + stickY * stickY > 0.1f);
 
-            if (flickerRoutine == null)
-                flickerRoutine = StartCoroutine(Flicker());
-        }
-        else
+        if (!stickMoved)
         {
             StopFlicker();
+            return false;
         }
 
-        if (aimed)
+        // -------------------------
+        // AIM MODE (LT held)
+        // -------------------------
+        if (isAiming)
         {
-            float angle = Mathf.Atan2(aimY, aimX) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, angle - 90);
+            float angle = Mathf.Atan2(stickY, stickX) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
 
             fireTimer += Time.deltaTime;
             cooldownImage.fillAmount = fireTimer / fireRate;
@@ -196,7 +190,34 @@ public class PlayerMovementMobile : MonoBehaviour
                 fireTimer = 0f;
                 cooldownImage.fillAmount = 0f;
             }
+
+            StopFlicker();
         }
+
+
+        // -------------------------
+        // MOVE MODE (LT not held)
+        // -------------------------
+        else
+        {
+            Vector3 moveDir = new Vector3(stickX, stickY, 0f).normalized;
+
+            transform.position += moveDir * moveSpeed * Time.deltaTime;
+
+            float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
+
+            Quaternion targetRot = Quaternion.Euler(0f, 0f, angle - 90f);
+            transform.rotation = Quaternion.RotateTowards(
+                transform.rotation,
+                targetRot,
+                rotationSpeed * Time.deltaTime
+            );
+
+            if (flickerRoutine == null)
+                flickerRoutine = StartCoroutine(Flicker());
+        }
+
+
 
         return true;
     }
