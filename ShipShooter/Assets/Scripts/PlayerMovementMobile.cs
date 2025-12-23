@@ -157,21 +157,35 @@ public class PlayerMovementMobile : MonoBehaviour
 
     bool HandleControllerInput()
     {
-        float stickX = Input.GetAxis("Horizontal");
-        float stickY = Input.GetAxis("Vertical");
+        // Left stick
+        float lx = Input.GetAxis("LeftStickX");
+        float ly = Input.GetAxis("LeftStickY");
+
+        // Right stick
+        float rx = Input.GetAxis("RightStickX");
+        float ry = Input.GetAxis("RightStickY");
 
         float leftTrigger = Input.GetAxis("LeftTrigger");
+        float rightTrigger = Input.GetAxis("RightTrigger");
+
+        bool isAiming = leftTrigger > 0.2f || rightTrigger > 0.2f;
 
 
-        bool isAiming = leftTrigger > 0.2f;
+        // Pick stick with larger magnitude (so either stick can drive)
+        Vector2 left = new Vector2(lx, ly);
+        Vector2 right = new Vector2(rx, ry);
 
-        bool stickMoved = (stickX * stickX + stickY * stickY > 0.1f);
+        Vector2 stick = (right.sqrMagnitude > left.sqrMagnitude) ? right : left;
 
+        bool stickMoved = stick.sqrMagnitude > 0.1f;
         if (!stickMoved)
         {
             StopFlicker();
             return false;
         }
+
+        float stickX = stick.x;
+        float stickY = stick.y;
 
         // -------------------------
         // AIM MODE (LT held)
@@ -193,20 +207,17 @@ public class PlayerMovementMobile : MonoBehaviour
 
             StopFlicker();
         }
-
-
         // -------------------------
         // MOVE MODE (LT not held)
         // -------------------------
         else
         {
             Vector3 moveDir = new Vector3(stickX, stickY, 0f).normalized;
-
             transform.position += moveDir * moveSpeed * Time.deltaTime;
 
             float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
-
             Quaternion targetRot = Quaternion.Euler(0f, 0f, angle - 90f);
+
             transform.rotation = Quaternion.RotateTowards(
                 transform.rotation,
                 targetRot,
@@ -217,10 +228,9 @@ public class PlayerMovementMobile : MonoBehaviour
                 flickerRoutine = StartCoroutine(Flicker());
         }
 
-
-
         return true;
     }
+
 
     // -------------------------
     // SHOOTING EFFECTS
