@@ -47,6 +47,12 @@ public class AsteroidStrong : MonoBehaviour
             Destroy(collision.gameObject);
             TakeDamage(maxHealth);
         }
+
+        if (collision.gameObject.CompareTag("Expl"))
+        {
+            Destroy(collision.gameObject);
+            TakeDamage(maxHealth);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col)

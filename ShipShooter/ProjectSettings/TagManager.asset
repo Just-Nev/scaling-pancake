@@ -9,6 +9,7 @@ TagManager:
   - Boss
   - Coin
   - bBullet
+  - Expl
   layers:
   - Default
   - TransparentFX

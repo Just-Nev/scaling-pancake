@@ -4932,6 +4932,7 @@ GameObject:
   - component: {fileID: 2949879191719299968}
   - component: {fileID: 81385076279049914}
   - component: {fileID: -7482245914007105899}
+  - component: {fileID: -1296381221033343313}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Untagged
@@ -5061,6 +5062,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-1296381221033343313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5923620548186200867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ec70f5860742fe479069fe4f9340c98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offscreenLifetime: 3
 --- !u!1 &7368012914227109942
 GameObject:
   m_ObjectHideFlags: 0

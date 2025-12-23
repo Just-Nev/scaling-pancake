@@ -31,7 +31,12 @@ public class Asteroid : MonoBehaviour
             Destroy(gameObject);
         }
 
-
+        if (collision.gameObject.CompareTag("Expl"))
+        {
+            Destroy(collision.gameObject);
+            SplitAsteroid();
+            Destroy(gameObject);
+        }
 
     }
 
