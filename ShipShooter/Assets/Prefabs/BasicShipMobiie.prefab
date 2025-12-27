@@ -338,6 +338,7 @@ MonoBehaviour:
   defaultSprite: {fileID: 1742266583, guid: 98c8e8e488ea0ca4c8f804a456e85f8a, type: 3}
   rocketSprite: {fileID: 900031577, guid: 98c8e8e488ea0ca4c8f804a456e85f8a, type: 3}
   flickerSpeed: 0.15
+  rotationSpeed: 720
 --- !u!114 &903707550401452947
 MonoBehaviour:
   m_ObjectHideFlags: 0

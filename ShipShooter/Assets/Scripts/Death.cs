@@ -31,7 +31,7 @@ public class Death : MonoBehaviour
     {
         if (died)
         {
-            if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown(KeyCode.Mouse1)))
+            if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown(KeyCode.Mouse1)) || Input.GetKeyDown(KeyCode.JoystickButton0))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
