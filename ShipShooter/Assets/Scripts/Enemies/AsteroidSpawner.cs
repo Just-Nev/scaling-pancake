@@ -2,23 +2,22 @@ using UnityEngine;
 
 public class AsteroidSpawner : MonoBehaviour
 {
-    [Header("Asteroids To Spawn")]
-    public GameObject[] asteroidPrefabs;
+    [System.Serializable]
+    public class AsteroidEntry
+    {
+        public GameObject prefab;
+
+        [Range(0f, 100f)]
+        [Tooltip("Relative spawn chance. Does NOT need to add up to 100.")]
+        public float spawnWeight = 1f;
+    }
+
+    [Header("Asteroids To Spawn (Weighted)")]
+    public AsteroidEntry[] asteroids;
 
     [Header("Spawn Settings")]
     public float spawnInterval = 1.5f;
     public float spawnDistance = 1f;
-
-    [Header("Movement")]
-    public float minSpeed = 1f;
-    public float maxSpeed = 3f;
-
-    [Header("Random Size")]
-    public float minScale = 0.8f;     // Slightly smaller
-    public float maxScale = 1.3f;     // Slightly larger
-
-    [Header("Random Rotation")]
-    public float maxRotationSpeed = 120f; // degrees per second
 
     private Camera cam;
 
@@ -30,59 +29,70 @@ public class AsteroidSpawner : MonoBehaviour
 
     void SpawnAsteroid()
     {
-        if (asteroidPrefabs.Length == 0)
+        if (asteroids == null || asteroids.Length == 0)
         {
-            Debug.LogWarning("AsteroidSpawner: No asteroid prefabs assigned!");
+            Debug.LogWarning("AsteroidSpawner: No asteroids assigned!");
             return;
         }
 
-        GameObject prefab = asteroidPrefabs[Random.Range(0, asteroidPrefabs.Length)];
+        GameObject prefab = GetWeightedRandomPrefab();
+        if (prefab == null) return;
 
-        // ------ Pick a spawn position ------
+        // ---- Pick a spawn position ----
         int side = Random.Range(0, 4);
-        Vector3 spawnPos = Vector3.zero;
+        Vector3 spawnPos;
 
         float camHeight = cam.orthographicSize;
         float camWidth = camHeight * cam.aspect;
 
         switch (side)
         {
-            case 0: // Top
+            case 0:
                 spawnPos = new Vector3(Random.Range(-camWidth, camWidth), camHeight + spawnDistance, 0);
                 break;
-            case 1: // Bottom
+            case 1:
                 spawnPos = new Vector3(Random.Range(-camWidth, camWidth), -camHeight - spawnDistance, 0);
                 break;
-            case 2: // Left
+            case 2:
                 spawnPos = new Vector3(-camWidth - spawnDistance, Random.Range(-camHeight, camHeight), 0);
                 break;
-            case 3: // Right
+            default:
                 spawnPos = new Vector3(camWidth + spawnDistance, Random.Range(-camHeight, camHeight), 0);
                 break;
         }
 
-        // ------ Spawn asteroid ------
-        GameObject asteroid = Instantiate(prefab, spawnPos, Quaternion.identity);
+        Instantiate(prefab, spawnPos, Quaternion.identity);
+    }
 
-        // ------ Random Size ------
-        float scale = Random.Range(minScale, maxScale);
-        asteroid.transform.localScale = new Vector3(scale, scale, 1f);
+    GameObject GetWeightedRandomPrefab()
+    {
+        float totalWeight = 0f;
 
-        // ------ Move inward ------
-        Vector3 direction = (Vector3.zero - spawnPos).normalized;
-        float speed = Random.Range(minSpeed, maxSpeed);
-
-        Rigidbody2D rb = asteroid.GetComponent<Rigidbody2D>();
-        if (rb != null)
+        foreach (var entry in asteroids)
         {
-            rb.linearVelocity = direction * speed;
-
-            // ------ Random rotation speed ------
-            float rot = Random.Range(-maxRotationSpeed, maxRotationSpeed);
-            rb.angularVelocity = rot;
+            if (entry.prefab != null)
+                totalWeight += Mathf.Max(0f, entry.spawnWeight);
         }
+
+        if (totalWeight <= 0f)
+            return null;
+
+        float random = Random.Range(0f, totalWeight);
+
+        foreach (var entry in asteroids)
+        {
+            if (entry.prefab == null) continue;
+
+            random -= Mathf.Max(0f, entry.spawnWeight);
+            if (random <= 0f)
+                return entry.prefab;
+        }
+
+        return null;
     }
 }
+
+
 
 
 

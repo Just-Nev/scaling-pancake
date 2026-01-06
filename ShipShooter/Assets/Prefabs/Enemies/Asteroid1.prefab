@@ -13,7 +13,9 @@ GameObject:
   - component: {fileID: 2643322734839531005}
   - component: {fileID: 3712608863911086389}
   - component: {fileID: -8858785690739695699}
-  m_Layer: 0
+  - component: {fileID: -3795836407742650100}
+  - component: {fileID: 7323727218758821943}
+  m_Layer: 6
   m_Name: Asteroid1
   m_TagString: Asteroid
   m_Icon: {fileID: 0}
@@ -195,6 +197,37 @@ MonoBehaviour:
   spawnRadius: 0.5
   launchForce: 1
   offscreenLifetime: 2
+--- !u!114 &-3795836407742650100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758804811544688160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cceed560dfb8d845879f7cebdd5eb77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minSpeed: 1
+  maxSpeed: 3
+  minScale: 0.8
+  maxScale: 1.3
+  maxRotationSpeed: 120
+--- !u!114 &7323727218758821943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758804811544688160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43e20638b6ac03a4fb47988cdac29e12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doNotDestroy: 1
+  occupyPortal: 1
 --- !u!1 &6373349090804610794
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,7 +238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8775928883389013021}
   - component: {fileID: 6465043566896865253}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Asteroid1
   m_TagString: Asteroid
   m_Icon: {fileID: 0}

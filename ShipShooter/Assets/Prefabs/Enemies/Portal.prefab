@@ -4933,6 +4933,9 @@ GameObject:
   - component: {fileID: 81385076279049914}
   - component: {fileID: -7482245914007105899}
   - component: {fileID: -1296381221033343313}
+  - component: {fileID: -6963876247412157355}
+  - component: {fileID: 8908800832893052450}
+  - component: {fileID: -3438446086637147847}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Untagged
@@ -5075,6 +5078,78 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offscreenLifetime: 3
+--- !u!114 &-6963876247412157355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5923620548186200867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 860cc432054f58f4e8127ab475371916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pullForce: 50
+  maxPullSpeed: 5
+  destroyDistance: 0.2
+  affectedLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  requireRigidbody: 1
+--- !u!58 &8908800832893052450
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5923620548186200867}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.016512632, y: 0.062758446}
+  m_Radius: 1.3311887
+--- !u!114 &-3438446086637147847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5923620548186200867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cceed560dfb8d845879f7cebdd5eb77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minSpeed: 1
+  maxSpeed: 1
+  minScale: 0.8
+  maxScale: 1.3
+  maxRotationSpeed: 120
 --- !u!1 &7368012914227109942
 GameObject:
   m_ObjectHideFlags: 0
