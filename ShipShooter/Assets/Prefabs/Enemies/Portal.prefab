@@ -5092,11 +5092,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pullForce: 50
   maxPullSpeed: 5
-  destroyDistance: 0.2
+  coreRadius: 0.25
+  holdRadius: 0.05
   affectedLayers:
     serializedVersion: 2
     m_Bits: 64
-  requireRigidbody: 1
+  stopPullingWhenOccupied: 1
 --- !u!58 &8908800832893052450
 CircleCollider2D:
   m_ObjectHideFlags: 0

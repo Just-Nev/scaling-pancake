@@ -76,14 +76,14 @@ MonoBehaviour:
   pixelResolutionY: 210
   screenBend: 4.55
   screenOverscan: 0
-  vignetteSize: 5.65
+  vignetteSize: 5.6
   vignetteSmooth: 10
   vignetteRound: 33.3
   blur: 0
   bleed: 0
-  smidge: 2.4
+  smidge: 0
   scanlinesStrength: 6.6
-  apertureStrength: 0.7
+  apertureStrength: 0
   shadowlines: 0
   shadowlinesSpeed: 0
   shadowlinesAlpha: 0
@@ -97,6 +97,6 @@ MonoBehaviour:
   green: 1
   blue: 1
   chromaticAberration: 0
-  redOffset: {x: 0.05, y: 0.05}
-  blueOffset: {x: 0, y: -0.07}
-  greenOffset: {x: -0.05, y: 0.05}
+  redOffset: {x: 0, y: 0}
+  blueOffset: {x: 0, y: 0}
+  greenOffset: {x: 0, y: 0}
