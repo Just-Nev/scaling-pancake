@@ -16,14 +16,23 @@ public class ClickToShoot : MonoBehaviour
     public Image cooldownImage;
 
     [Header("Squash & Stretch")]
-    public float squashAmount = 0.8f;
-    public float squashDuration = 0.07f;
+    public bool enableSquashStretch = true;
+    public float squashAmount = 0.85f;     // smaller = more squash
+    public float stretchAmount = 1.15f;    // bigger = more stretch
+    public float squashTotalTime = 0.12f;  // total time for the whole punch
+
+    [Header("Camera Shake")]
+    public bool enableCameraShake = true;
+    public float shakeDuration = 0.08f;
+    public float shakeMagnitude = 0.15f;
 
     private float fireTimer;
     private bool isHolding;
-    private bool isSquashing;
     private Vector3 originalScale;
     private Camera cam;
+
+    private Coroutine squashRoutine;
+    private Coroutine shakeRoutine;
 
     void Start()
     {
@@ -37,14 +46,10 @@ public class ClickToShoot : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
-        {
             TryActivate();
-        }
 
         if (Input.GetMouseButtonUp(0))
-        {
             isHolding = false;
-        }
 
         if (!isHolding) return;
 
@@ -85,33 +90,91 @@ public class ClickToShoot : MonoBehaviour
     {
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 
-        if (!isSquashing)
-            StartCoroutine(SquashStretch());
+        if (enableSquashStretch)
+        {
+            if (squashRoutine != null) StopCoroutine(squashRoutine);
+            squashRoutine = StartCoroutine(SquashStretchPunch());
+        }
+
+        if (enableCameraShake && cam != null)
+        {
+            if (shakeRoutine != null) StopCoroutine(shakeRoutine);
+            shakeRoutine = StartCoroutine(CameraShake());
+        }
     }
 
-    IEnumerator SquashStretch()
+    IEnumerator SquashStretchPunch()
     {
-        isSquashing = true;
+        // 3-step punch: squash -> stretch -> back
+        float t1 = squashTotalTime * 0.33f;
+        float t2 = squashTotalTime * 0.33f;
+        float t3 = squashTotalTime * 0.34f;
 
-        transform.localScale = new Vector3(
-            originalScale.x,
+        Vector3 squashScale = new Vector3(
+            originalScale.x * stretchAmount,
             originalScale.y * squashAmount,
             originalScale.z
         );
 
-        yield return new WaitForSeconds(squashDuration);
+        Vector3 stretchScale = new Vector3(
+            originalScale.x * squashAmount,
+            originalScale.y * stretchAmount,
+            originalScale.z
+        );
+
+        yield return ScaleOverTime(transform, transform.localScale, squashScale, t1);
+        yield return ScaleOverTime(transform, squashScale, stretchScale, t2);
+        yield return ScaleOverTime(transform, stretchScale, originalScale, t3);
 
         transform.localScale = originalScale;
-        isSquashing = false;
     }
 
-    // Draw activation radius in Scene view
+    IEnumerator ScaleOverTime(Transform tr, Vector3 from, Vector3 to, float duration)
+    {
+        if (duration <= 0f)
+        {
+            tr.localScale = to;
+            yield break;
+        }
+
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float k = Mathf.Clamp01(elapsed / duration);
+            tr.localScale = Vector3.Lerp(from, to, k);
+            yield return null;
+        }
+        tr.localScale = to;
+    }
+
+    IEnumerator CameraShake()
+    {
+        Transform camTr = cam.transform;
+        Vector3 startPos = camTr.position;
+
+        float elapsed = 0f;
+        while (elapsed < shakeDuration)
+        {
+            elapsed += Time.deltaTime;
+
+            float x = Random.Range(-1f, 1f) * shakeMagnitude;
+            float y = Random.Range(-1f, 1f) * shakeMagnitude;
+
+            camTr.position = startPos + new Vector3(x, y, 0f);
+            yield return null;
+        }
+
+        camTr.position = startPos;
+    }
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, activationRadius);
     }
 }
+
 
 
 

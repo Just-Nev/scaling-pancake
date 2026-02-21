@@ -2,7 +2,7 @@
 - Project name: ShipShooter
 - Unity version: Unity 6000.0.23f1
 - Active game object:
-  - Name: Ship_0
+  - Name: arButtonR delette
   - Tag: Untagged
-  - Layer: Default
+  - Layer: UI
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
