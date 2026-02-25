@@ -17,14 +17,16 @@ public class ClickToShoot : MonoBehaviour
 
     [Header("Squash & Stretch")]
     public bool enableSquashStretch = true;
-    public float squashAmount = 0.85f;     // smaller = more squash
-    public float stretchAmount = 1.15f;    // bigger = more stretch
-    public float squashTotalTime = 0.12f;  // total time for the whole punch
+    public float squashAmount = 0.85f;
+    public float stretchAmount = 1.15f;
+    public float squashTotalTime = 0.12f;
 
-    [Header("Camera Shake")]
-    public bool enableCameraShake = true;
-    public float shakeDuration = 0.08f;
-    public float shakeMagnitude = 0.15f;
+    [Header("Sprite Flicker (Button Toggle)")]
+    public bool enableSpriteFlicker = true;
+    public Sprite originalSprite;
+    public Sprite flickerSprite;
+    public float flickerInterval = 0.08f;   // lower = faster flicker
+    public bool startFlickerOnEnable = false;
 
     private float fireTimer;
     private bool isHolding;
@@ -32,19 +34,30 @@ public class ClickToShoot : MonoBehaviour
     private Camera cam;
 
     private Coroutine squashRoutine;
-    private Coroutine shakeRoutine;
+
+    private SpriteRenderer sr;
+    private Coroutine flickerRoutine;
+    private bool isFlickering;
 
     void Start()
     {
         cam = Camera.main;
         originalScale = transform.localScale;
 
+        sr = GetComponent<SpriteRenderer>();
+        if (sr != null && originalSprite == null)
+            originalSprite = sr.sprite;
+
         if (cooldownImage != null)
             cooldownImage.fillAmount = 0f;
+
+        if (startFlickerOnEnable)
+            StartFlicker();
     }
 
     void Update()
     {
+        // Your original mouse-hold shooting still works
         if (Input.GetMouseButtonDown(0))
             TryActivate();
 
@@ -70,20 +83,15 @@ public class ClickToShoot : MonoBehaviour
 
     void TryActivate()
     {
+        if (cam == null) return;
+
         Vector3 worldPos = cam.ScreenToWorldPoint(Input.mousePosition);
         worldPos.z = 0f;
 
         float distance = Vector3.Distance(transform.position, worldPos);
 
         if (distance <= activationRadius)
-        {
-            Debug.Log("Mouse in range");
             isHolding = true;
-        }
-        else
-        {
-            Debug.Log("Mouse out of range");
-        }
     }
 
     void Shoot()
@@ -95,17 +103,57 @@ public class ClickToShoot : MonoBehaviour
             if (squashRoutine != null) StopCoroutine(squashRoutine);
             squashRoutine = StartCoroutine(SquashStretchPunch());
         }
+    }
 
-        if (enableCameraShake && cam != null)
+    // ---------- FLICKER CONTROL (Call from Button) ----------
+
+    // Hook UI Button OnClick() to this
+    public void ToggleFlicker()
+    {
+        if (isFlickering) StopFlicker();
+        else StartFlicker();
+    }
+
+    public void StartFlicker()
+    {
+        if (!enableSpriteFlicker || sr == null || originalSprite == null || flickerSprite == null)
+            return;
+
+        if (flickerRoutine != null) StopCoroutine(flickerRoutine);
+        isFlickering = true;
+        flickerRoutine = StartCoroutine(FlickerLoop());
+    }
+
+    public void StopFlicker()
+    {
+        isFlickering = false;
+
+        if (flickerRoutine != null)
         {
-            if (shakeRoutine != null) StopCoroutine(shakeRoutine);
-            shakeRoutine = StartCoroutine(CameraShake());
+            StopCoroutine(flickerRoutine);
+            flickerRoutine = null;
+        }
+
+        if (sr != null && originalSprite != null)
+            sr.sprite = originalSprite;
+    }
+
+    IEnumerator FlickerLoop()
+    {
+        bool state = false;
+
+        while (isFlickering)
+        {
+            state = !state;
+            sr.sprite = state ? flickerSprite : originalSprite;
+            yield return new WaitForSeconds(flickerInterval);
         }
     }
 
+    // ---------- SQUASH / STRETCH ----------
+
     IEnumerator SquashStretchPunch()
     {
-        // 3-step punch: squash -> stretch -> back
         float t1 = squashTotalTime * 0.33f;
         float t2 = squashTotalTime * 0.33f;
         float t3 = squashTotalTime * 0.34f;
@@ -148,24 +196,10 @@ public class ClickToShoot : MonoBehaviour
         tr.localScale = to;
     }
 
-    IEnumerator CameraShake()
+    void OnDisable()
     {
-        Transform camTr = cam.transform;
-        Vector3 startPos = camTr.position;
-
-        float elapsed = 0f;
-        while (elapsed < shakeDuration)
-        {
-            elapsed += Time.deltaTime;
-
-            float x = Random.Range(-1f, 1f) * shakeMagnitude;
-            float y = Random.Range(-1f, 1f) * shakeMagnitude;
-
-            camTr.position = startPos + new Vector3(x, y, 0f);
-            yield return null;
-        }
-
-        camTr.position = startPos;
+        // Safety: stop coroutine + restore sprite if object disabled
+        StopFlicker();
     }
 
     void OnDrawGizmosSelected()
@@ -174,8 +208,3 @@ public class ClickToShoot : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, activationRadius);
     }
 }
-
-
-
-
-
