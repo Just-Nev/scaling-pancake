@@ -56,7 +56,10 @@ public class PlayerMovementMobile : MonoBehaviour
         HandleScrollWheel();
 
         bool usedMobile = HandleMobileInput();
-        bool usedController = HandleControllerInput();
+        bool usedController = false;
+
+        if (!usedMobile)
+            usedController = HandleControllerInput();
 
         if (!usedMobile && !usedController)
         {
@@ -184,8 +187,7 @@ public class PlayerMovementMobile : MonoBehaviour
         bool stickMoved = stick.sqrMagnitude > 0.1f;
         if (!stickMoved)
         {
-            StopFlicker();
-            return false;
+            return false; // don't touch flicker here
         }
 
         float stickX = stick.x;
