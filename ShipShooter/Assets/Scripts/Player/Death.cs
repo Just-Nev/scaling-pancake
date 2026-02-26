@@ -16,6 +16,10 @@ public class Death : MonoBehaviour
     public float shakeDuration = 0.3f;
     public float shakeMagnitude = 0.2f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource playerAudioSource;
+    [SerializeField] private AudioClip deathSound;
+
     private Vector3 originalCamPos;
 
     private void Start()
@@ -63,6 +67,9 @@ public class Death : MonoBehaviour
 
     void Die()
     {
+        // Play Sound
+        playerAudioSource.PlayOneShot(deathSound);
+
         // Spawn explosion
         if (deathEffect != null)
             Instantiate(deathEffect, transform.position, Quaternion.identity);

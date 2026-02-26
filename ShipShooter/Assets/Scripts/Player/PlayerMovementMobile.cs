@@ -39,6 +39,10 @@ public class PlayerMovementMobile : MonoBehaviour
     [Header("Controller")]
     [SerializeField] float rotationSpeed = 720f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSourcePlayer;
+    [SerializeField] private AudioClip bulletSound;
+
     void Start()
     {
         cam = Camera.main;
@@ -238,6 +242,8 @@ public class PlayerMovementMobile : MonoBehaviour
     void Shoot()
     {
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        audioSourcePlayer.pitch = Random.Range(0.45f, 0.85f);
+        audioSourcePlayer.PlayOneShot(bulletSound);
 
         if (!isSquashing)
             StartCoroutine(SquashStretch());
