@@ -340,6 +340,8 @@ MonoBehaviour:
   rocketSprite: {fileID: 900031577, guid: 98c8e8e488ea0ca4c8f804a456e85f8a, type: 3}
   flickerSpeed: 0.15
   rotationSpeed: 720
+  audioSourcePlayer: {fileID: 0}
+  bulletSound: {fileID: 0}
 --- !u!114 &903707550401452947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,6 +359,8 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   shakeDuration: 0.3
   shakeMagnitude: 0.3
+  playerAudioSource: {fileID: 0}
+  deathSound: {fileID: 0}
 --- !u!60 &1357140999016523386
 PolygonCollider2D:
   m_ObjectHideFlags: 0
