@@ -5636,6 +5636,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 519420031}
     - target: {fileID: 903707550401452947, guid: c14d952fa9e8409438b593fe32698483, type: 3}
+      propertyPath: gameOverSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c963ab0b649f3654f802cd0b0e9e021f, type: 3}
+    - target: {fileID: 903707550401452947, guid: c14d952fa9e8409438b593fe32698483, type: 3}
       propertyPath: playerAudioSource
       value: 
       objectReference: {fileID: 1520174694}
@@ -5714,7 +5718,7 @@ PrefabInstance:
     - target: {fileID: 8400774840317622525, guid: c14d952fa9e8409438b593fe32698483, type: 3}
       propertyPath: bulletSound
       value: 
-      objectReference: {fileID: 8300000, guid: d0fb3c4911f51d541be4cfc7c2cc1b81, type: 3}
+      objectReference: {fileID: 8300000, guid: a3ae2fc0a1639594482ae51ade1915df, type: 3}
     - target: {fileID: 8400774840317622525, guid: c14d952fa9e8409438b593fe32698483, type: 3}
       propertyPath: stopDistance
       value: 1

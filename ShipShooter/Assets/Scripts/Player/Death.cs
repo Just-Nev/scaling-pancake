@@ -19,6 +19,7 @@ public class Death : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private AudioSource playerAudioSource;
     [SerializeField] private AudioClip deathSound;
+    [SerializeField] private AudioClip gameOverSound;
 
     private Vector3 originalCamPos;
 
@@ -67,8 +68,10 @@ public class Death : MonoBehaviour
 
     void Die()
     {
-        // Play Sound
+        // Play Sounda
+        playerAudioSource.pitch = 1;
         playerAudioSource.PlayOneShot(deathSound);
+        playerAudioSource.PlayOneShot(gameOverSound);
 
         // Spawn explosion
         if (deathEffect != null)
