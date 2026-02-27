@@ -2,7 +2,7 @@
 - Project name: ShipShooter
 - Unity version: Unity 6000.0.23f1
 - Active game object:
-  - Name: WhiteBossDeath 1
-  - Tag: Untagged
+  - Name: Pause
+  - Tag: Boss
   - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

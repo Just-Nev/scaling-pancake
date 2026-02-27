@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections; 
+using System.Collections;
 
-public class TutBossMvSh : MonoBehaviour
+
+public class TutBossPause : MonoBehaviour
 {
     [Header("VFX")]
     public GameObject HitParticle;
@@ -11,7 +12,7 @@ public class TutBossMvSh : MonoBehaviour
     [Header("Boss Health")]
     public float maxHealth = 10f;
     public float health;
-    public Image fillImage;          // Assign your "Health Bar Fill"
+    public Image fillImage;         
     public CanvasGroup healthBarUI;
 
     [Header("Hit Feedback")]
@@ -22,13 +23,13 @@ public class TutBossMvSh : MonoBehaviour
     [Header("Animator")]
     public Animator MvAnim;
 
-    [Header("Game Object")]
-    public GameObject PauseBoss;
-    public GameObject PauseBossBar;
+    [Header("Script")]
+    public PauseMenu psMenu;
 
 
     private Camera cam;
     private bool isDead = false;
+    private bool hasPaused = false;
 
 
     private void Start()
@@ -45,13 +46,21 @@ public class TutBossMvSh : MonoBehaviour
         {
             MvAnim.SetBool("BossP1", true);
         }
-        if (health <= 6) 
+        if (health <= 6)
         {
             MvAnim.SetBool("BossP2", true);
+
+            if (hasPaused != true)
+            {
+                psMenu.PauseGame();
+                hasPaused = true;
+            }
+
+            
         }
-        if (health == 0)
+        if (health == 4)
         {
-            MvAnim.SetBool("Dead", true);
+            //MvAnim.SetBool("BossP3", true);
         }
 
     }
@@ -79,8 +88,6 @@ public class TutBossMvSh : MonoBehaviour
 
         if (health <= 0)
         {
-            PauseBoss.SetActive(true);
-            PauseBossBar.SetActive(true);
             Die();
         }
     }
