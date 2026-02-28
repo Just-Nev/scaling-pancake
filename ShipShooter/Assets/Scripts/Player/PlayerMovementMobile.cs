@@ -26,6 +26,10 @@ public class PlayerMovementMobile : MonoBehaviour
     public Sprite rocketSprite;
     public float flickerSpeed = 0.1f;
 
+    [Header("Control Lock")]
+    [SerializeField] private bool controlsLocked = false;
+    public bool ControlsLocked => controlsLocked;
+
     private SpriteRenderer sr;
     private Coroutine flickerRoutine;
 
@@ -48,11 +52,21 @@ public class PlayerMovementMobile : MonoBehaviour
         cam = Camera.main;
         sr = GetComponent<SpriteRenderer>();
         originalScale = transform.localScale;
-        cooldownImage.fillAmount = 0f;
+
+        if (cooldownImage != null)
+            cooldownImage.fillAmount = 0f;
     }
 
     void Update()
     {
+        // BLOCK ALL INPUT IF LOCKED
+        if (controlsLocked)
+        {
+            StopFlicker();
+            if (cooldownImage != null) cooldownImage.fillAmount = 0f;
+            return;
+        }
+
         HandleScrollWheel();
 
         bool usedMobile = HandleMobileInput();
@@ -64,7 +78,7 @@ public class PlayerMovementMobile : MonoBehaviour
         if (!usedMobile && !usedController)
         {
             StopFlicker();
-            cooldownImage.fillAmount = 0f;
+            if (cooldownImage != null) cooldownImage.fillAmount = 0f;
         }
     }
 
@@ -89,6 +103,25 @@ public class PlayerMovementMobile : MonoBehaviour
         }
     }
 
+    // -------------------------
+    // PUBLIC CONTROL LOCK API
+    // -------------------------
+    public void LockControls()
+    {
+        controlsLocked = true;
+
+        // Reset shooting + UI state
+        fireTimer = 0f;
+        if (cooldownImage != null) cooldownImage.fillAmount = 0f;
+
+        // Stop movement visuals
+        StopFlicker();
+    }
+
+    public void UnlockControls()
+    {
+        controlsLocked = false;
+    }
 
     // -------------------------
     // SCROLL WHEEL TO ADJUST STOP DISTANCE
@@ -150,13 +183,13 @@ public class PlayerMovementMobile : MonoBehaviour
         }
 
         fireTimer += Time.deltaTime;
-        cooldownImage.fillAmount = fireTimer / fireRate;
+        if (cooldownImage != null) cooldownImage.fillAmount = fireTimer / fireRate;
 
         if (fireTimer >= fireRate)
         {
             Shoot();
             fireTimer = 0f;
-            cooldownImage.fillAmount = 0f;
+            if (cooldownImage != null) cooldownImage.fillAmount = 0f;
         }
 
         return true;
@@ -176,7 +209,6 @@ public class PlayerMovementMobile : MonoBehaviour
         float rightTrigger = Input.GetAxis("RightTrigger");
 
         bool isAiming = leftTrigger > 0.2f || rightTrigger > 0.2f;
-
 
         // Pick stick with larger magnitude (so either stick can drive)
         Vector2 left = new Vector2(lx, ly);
@@ -202,13 +234,13 @@ public class PlayerMovementMobile : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
 
             fireTimer += Time.deltaTime;
-            cooldownImage.fillAmount = fireTimer / fireRate;
+            if (cooldownImage != null) cooldownImage.fillAmount = fireTimer / fireRate;
 
             if (fireTimer >= fireRate)
             {
                 Shoot();
                 fireTimer = 0f;
-                cooldownImage.fillAmount = 0f;
+                if (cooldownImage != null) cooldownImage.fillAmount = 0f;
             }
 
             StopFlicker();
@@ -237,15 +269,18 @@ public class PlayerMovementMobile : MonoBehaviour
         return true;
     }
 
-
     // -------------------------
     // SHOOTING EFFECTS
     // -------------------------
     void Shoot()
     {
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        audioSourcePlayer.pitch = Random.Range(0.45f, 0.85f);
-        audioSourcePlayer.PlayOneShot(bulletSound);
+
+        if (audioSourcePlayer != null && bulletSound != null)
+        {
+            audioSourcePlayer.pitch = Random.Range(0.45f, 0.85f);
+            audioSourcePlayer.PlayOneShot(bulletSound);
+        }
 
         if (!isSquashing)
             StartCoroutine(SquashStretch());
@@ -286,7 +321,8 @@ public class PlayerMovementMobile : MonoBehaviour
             flickerRoutine = null;
         }
 
-        sr.sprite = defaultSprite;
+        if (sr != null && defaultSprite != null)
+            sr.sprite = defaultSprite;
     }
 }
 
