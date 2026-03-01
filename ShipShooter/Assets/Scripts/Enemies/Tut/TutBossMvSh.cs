@@ -45,7 +45,7 @@ public class TutBossMvSh : MonoBehaviour
         {
             MvAnim.SetBool("BossP1", true);
         }
-        if (health <= 6) 
+        if (health <= 7) 
         {
             MvAnim.SetBool("BossP2", true);
         }

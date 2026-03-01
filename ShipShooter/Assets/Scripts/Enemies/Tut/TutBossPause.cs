@@ -29,7 +29,9 @@ public class TutBossPause : MonoBehaviour
 
     private Camera cam;
     private bool isDead = false;
-    private bool hasPaused = false;
+
+    private bool pausedP2 = false;
+    private bool pausedP3 = false;
 
 
     private void Start()
@@ -40,29 +42,35 @@ public class TutBossPause : MonoBehaviour
         fillImage.fillAmount = 1f;
     }
 
+
     private void Update()
     {
-        if (health <= 7)
+        if (health <= 9)
         {
             MvAnim.SetBool("BossP1", true);
         }
-        if (health <= 6)
+
+        if (health <= 7)
         {
             MvAnim.SetBool("BossP2", true);
 
-            if (hasPaused != true)
+            if (!pausedP2)
             {
                 psMenu.PauseGame();
-                hasPaused = true;
+                pausedP2 = true;
             }
-
-            
         }
-        if (health == 4)
+
+        if (health <= 4)
         {
             //MvAnim.SetBool("BossP3", true);
-        }
 
+            if (!pausedP3)
+            {
+                psMenu.PauseGame();
+                pausedP3 = true;
+            }
+        }
     }
 
 
