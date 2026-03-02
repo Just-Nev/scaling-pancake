@@ -25,6 +25,7 @@ public class TutBossPause : MonoBehaviour
 
     [Header("Script")]
     public PauseMenu psMenu;
+    public GameObject Portal;
 
 
     private Camera cam;
@@ -146,6 +147,7 @@ public class TutBossPause : MonoBehaviour
         isDead = true;
         GetComponent<PolygonCollider2D>().enabled = false;
         Instantiate(DeathParticle, transform.position, Quaternion.identity);
+        //playerNextLevel.GoToNextLevelSetup();
         StartCoroutine(DeathSequence());
     }
 
@@ -153,6 +155,8 @@ public class TutBossPause : MonoBehaviour
     {
         // Fade the health bar first
         yield return StartCoroutine(FadeHealthBar());
+
+        Portal.SetActive(true);
 
         // Now disable boss
         gameObject.SetActive(false);
