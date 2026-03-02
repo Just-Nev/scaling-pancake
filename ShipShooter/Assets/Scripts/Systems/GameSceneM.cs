@@ -15,6 +15,7 @@ public class GameSceneM : MonoBehaviour
         
     }
 
+    //Loads test map scene
     public void LevelTrans1()
     {
         Invoke("LevelTransDelay", 3);
@@ -23,5 +24,17 @@ public class GameSceneM : MonoBehaviour
     void LevelTransDelay() 
     {
         SceneManager.LoadScene(3);
+
+    }
+
+    //Loads test power up scene
+    public void LevelPower()
+    {
+        Invoke("LevelPowerDelay", 3);
+    }
+
+    void LevelPowerDelay()
+    {
+        SceneManager.LoadScene(4);
     }
 }

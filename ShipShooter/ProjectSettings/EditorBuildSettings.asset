@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelTransitionTest.unity
     guid: b4f5094251ad1cf42a8c4734131359a9
+  - enabled: 1
+    path: Assets/Scenes/Power Up Test.unity
+    guid: be87ede29154b8946966771c4e61d488
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
