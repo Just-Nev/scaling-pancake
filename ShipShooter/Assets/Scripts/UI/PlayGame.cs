@@ -17,7 +17,7 @@ public class PlayGame : MonoBehaviour
 
     public void PlayButton()
     {
-        Invoke("PlayButtonWithDelay", 2.75f); 
+        Invoke("PlayButtonWithDelay", 2f); 
     }
     void PlayButtonWithDelay()
     {
