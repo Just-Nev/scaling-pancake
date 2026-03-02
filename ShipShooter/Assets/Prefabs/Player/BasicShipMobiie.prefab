@@ -339,6 +339,7 @@ MonoBehaviour:
   defaultSprite: {fileID: 1742266583, guid: 98c8e8e488ea0ca4c8f804a456e85f8a, type: 3}
   rocketSprite: {fileID: 900031577, guid: 98c8e8e488ea0ca4c8f804a456e85f8a, type: 3}
   flickerSpeed: 0.15
+  controlsLocked: 0
   rotationSpeed: 720
   audioSourcePlayer: {fileID: 0}
   bulletSound: {fileID: 0}
