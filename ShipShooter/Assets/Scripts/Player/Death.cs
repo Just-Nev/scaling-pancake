@@ -91,7 +91,8 @@ public class Death : MonoBehaviour
         Retry.SetActive(true);
         died = true;
 
-        
+        // Reset Stats
+        RunManager.Instance.EndRun();
     }
 
     IEnumerator ScreenShake()

@@ -5,13 +5,11 @@ using System.Collections;
 public class PlayerMovementMobile : MonoBehaviour
 {
     [Header("Movement")]
-    public float moveSpeed = 5f;
     public float stopDistance = 0.5f;
 
     [Header("Shooting")]
     public GameObject bulletPrefab;
     public Transform firePoint;
-    public float fireRate = 0.2f;
 
     [Header("Cooldown UI")]
     public Image cooldownImage;
@@ -172,7 +170,7 @@ public class PlayerMovementMobile : MonoBehaviour
 
         if (dist > stopDistance)
         {
-            transform.position += dir.normalized * moveSpeed * Time.deltaTime;
+            transform.position += dir.normalized * RunManager.Instance.currentMoveSpeed * Time.deltaTime;
 
             if (flickerRoutine == null)
                 flickerRoutine = StartCoroutine(Flicker());
@@ -183,9 +181,9 @@ public class PlayerMovementMobile : MonoBehaviour
         }
 
         fireTimer += Time.deltaTime;
-        if (cooldownImage != null) cooldownImage.fillAmount = fireTimer / fireRate;
+        if (cooldownImage != null) cooldownImage.fillAmount = fireTimer / RunManager.Instance.currentFireRate;
 
-        if (fireTimer >= fireRate)
+        if (fireTimer >= RunManager.Instance.currentFireRate)
         {
             Shoot();
             fireTimer = 0f;
@@ -234,9 +232,9 @@ public class PlayerMovementMobile : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
 
             fireTimer += Time.deltaTime;
-            if (cooldownImage != null) cooldownImage.fillAmount = fireTimer / fireRate;
+            if (cooldownImage != null) cooldownImage.fillAmount = fireTimer / RunManager.Instance.currentFireRate;
 
-            if (fireTimer >= fireRate)
+            if (fireTimer >= RunManager.Instance.currentFireRate)
             {
                 Shoot();
                 fireTimer = 0f;
@@ -251,7 +249,7 @@ public class PlayerMovementMobile : MonoBehaviour
         else
         {
             Vector3 moveDir = new Vector3(stickX, stickY, 0f).normalized;
-            transform.position += moveDir * moveSpeed * Time.deltaTime;
+            transform.position += moveDir * RunManager.Instance.currentMoveSpeed * Time.deltaTime;
 
             float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
             Quaternion targetRot = Quaternion.Euler(0f, 0f, angle - 90f);

@@ -159,7 +159,7 @@ Transform:
   m_GameObject: {fileID: 6577318192851440692}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.62, z: 0}
+  m_LocalPosition: {x: 0, y: 0.83, z: 0}
   m_LocalScale: {x: 2.55, y: 2.55, z: 2.55}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -232,12 +232,14 @@ GameObject:
   - component: {fileID: 5124930127110503028}
   - component: {fileID: 8400774840317622525}
   - component: {fileID: 903707550401452947}
+  - component: {fileID: 2646314037672267027}
   - component: {fileID: 1357140999016523386}
   - component: {fileID: 5340245014586620420}
   - component: {fileID: 381798166503578496}
+  - component: {fileID: 6829406839631549389}
   m_Layer: 0
   m_Name: BasicShipMobiie
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -327,11 +329,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 309dd23e09870b64a9a3808369afa446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  stopDistance: 1.5
+  stopDistance: 1
   bulletPrefab: {fileID: 8750842764637474466, guid: 6ac8e50fa5f710649ad73b017db12837, type: 3}
   firePoint: {fileID: 7679130635513027668}
-  fireRate: 0.5
   cooldownImage: {fileID: 6032279172510028111}
   uiOffset: {x: 0, y: 1, z: 0}
   squashAmount: 0.85
@@ -341,8 +341,8 @@ MonoBehaviour:
   flickerSpeed: 0.15
   controlsLocked: 0
   rotationSpeed: 720
-  audioSourcePlayer: {fileID: 0}
-  bulletSound: {fileID: 0}
+  audioSourcePlayer: {fileID: 381798166503578496}
+  bulletSound: {fileID: 8300000, guid: a3ae2fc0a1639594482ae51ade1915df, type: 3}
 --- !u!114 &903707550401452947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,9 +360,23 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   shakeDuration: 0.3
   shakeMagnitude: 0.3
-  playerAudioSource: {fileID: 0}
-  deathSound: {fileID: 0}
-  gameOverSound: {fileID: 0}
+  playerAudioSource: {fileID: 381798166503578496}
+  deathSound: {fileID: 8300000, guid: 33741fdc37cb8e94891225b4c37fcb42, type: 3}
+  gameOverSound: {fileID: 8300000, guid: c963ab0b649f3654f802cd0b0e9e021f, type: 3}
+--- !u!114 &2646314037672267027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8557469391546097962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b14f0f4b80c860847a5145904cccedae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
+  scoreText: {fileID: 0}
 --- !u!60 &1357140999016523386
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -458,9 +472,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.33
+  m_Pitch: 0
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -543,6 +557,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6829406839631549389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8557469391546097962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edf469ff85a03df42ac8d4f7368dfa8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseStats: {fileID: 11400000, guid: 341649495b41f3949a4f8b2275e96339, type: 2}
+  currentMaxHealth: 0
+  currentMoveSpeed: 0
+  currentFireRate: 0
+  currentDamage: 0
 --- !u!1 &8883814997613435075
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,7 +608,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 69}
+  m_AnchoredPosition: {x: 0, y: 80.8}
   m_SizeDelta: {x: 38.66, y: 38.66}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8738379078324610514

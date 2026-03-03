@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      HyperDriveLoadin2_0: 5479315303203746756
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
