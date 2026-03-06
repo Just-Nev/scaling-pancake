@@ -236,7 +236,6 @@ GameObject:
   - component: {fileID: 1357140999016523386}
   - component: {fileID: 5340245014586620420}
   - component: {fileID: 381798166503578496}
-  - component: {fileID: 6829406839631549389}
   m_Layer: 0
   m_Name: BasicShipMobiie
   m_TagString: Player
@@ -557,23 +556,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6829406839631549389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8557469391546097962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edf469ff85a03df42ac8d4f7368dfa8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseStats: {fileID: 11400000, guid: 341649495b41f3949a4f8b2275e96339, type: 2}
-  currentMaxHealth: 0
-  currentMoveSpeed: 0
-  currentFireRate: 0
-  currentDamage: 0
 --- !u!1 &8883814997613435075
 GameObject:
   m_ObjectHideFlags: 0
