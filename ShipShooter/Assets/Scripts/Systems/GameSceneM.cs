@@ -37,4 +37,9 @@ public class GameSceneM : MonoBehaviour
     {
         SceneManager.LoadScene(4);
     }
+
+    public void testSceneLoader()
+    {
+        SceneManager.LoadScene(2);
+    }
 }
