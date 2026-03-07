@@ -694,7 +694,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &178144917
 Transform:
   m_ObjectHideFlags: 0
@@ -3069,7 +3069,7 @@ MonoBehaviour:
     spawnWeight: 15
   - prefab: {fileID: 5923620548186200867, guid: 7871320e078011b4d84ad4efdab936ef, type: 3}
     spawnWeight: 10
-  spawnInterval: 2
+  spawnInterval: 1.5
   spawnDistance: 1
 --- !u!4 &787583160
 Transform:
@@ -3476,7 +3476,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &912519962
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3951,7 +3951,7 @@ Transform:
   m_GameObject: {fileID: 971892445}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.46, y: -3.02, z: 0}
+  m_LocalPosition: {x: -1.4, y: -0.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4200,7 +4200,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1080234862
 Transform:
   m_ObjectHideFlags: 0
@@ -4329,11 +4329,11 @@ PrefabInstance:
       objectReference: {fileID: 519420031}
     - target: {fileID: 2060600527478254457, guid: c14d952fa9e8409438b593fe32698483, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.02
+      value: -3.56
       objectReference: {fileID: 0}
     - target: {fileID: 2060600527478254457, guid: c14d952fa9e8409438b593fe32698483, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.2
+      value: -2.57
       objectReference: {fileID: 0}
     - target: {fileID: 2060600527478254457, guid: c14d952fa9e8409438b593fe32698483, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6827,7 +6827,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1927661386
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7009,7 +7009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pivot: {fileID: 1520174692}
-  speed: 900
+  speed: 400
 --- !u!212 &1969396654
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7347,7 +7347,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2016173920
 Transform:
   m_ObjectHideFlags: 0
@@ -7465,6 +7465,10 @@ PrefabInstance:
     - target: {fileID: 8253745719630070332, guid: 29c420ed76a0e2a41a53f1d9a21ec579, type: 3}
       propertyPath: m_Name
       value: Laser (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8253745719630070332, guid: 29c420ed76a0e2a41a53f1d9a21ec579, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9165925694595116075, guid: 29c420ed76a0e2a41a53f1d9a21ec579, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7609,6 +7613,10 @@ PrefabInstance:
     - target: {fileID: 8253745719630070332, guid: 29c420ed76a0e2a41a53f1d9a21ec579, type: 3}
       propertyPath: m_Name
       value: Laser
+      objectReference: {fileID: 0}
+    - target: {fileID: 8253745719630070332, guid: 29c420ed76a0e2a41a53f1d9a21ec579, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9165925694595116075, guid: 29c420ed76a0e2a41a53f1d9a21ec579, type: 3}
       propertyPath: m_LocalPosition.x

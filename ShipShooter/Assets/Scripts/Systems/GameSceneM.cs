@@ -23,7 +23,7 @@ public class GameSceneM : MonoBehaviour
 
     void LevelTransDelay() 
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(4);
 
     }
 
@@ -35,11 +35,11 @@ public class GameSceneM : MonoBehaviour
 
     void LevelPowerDelay()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(5);
     }
 
     public void testSceneLoader()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 }
