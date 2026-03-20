@@ -6,11 +6,14 @@ public class MapManager : MonoBehaviour
 {
     public static MapManager Instance;
 
+    [Header("Map Data")]
     public List<MapNode> mapNodes = new List<MapNode>();
 
+    [Header("Run State")]
     public string currentNodeID = "";
     public List<string> unlockedNodes = new List<string>();
     public List<string> completedNodes = new List<string>();
+    public List<string> blockedNodes = new List<string>();
 
     private Dictionary<string, MapNode> nodeLookup = new Dictionary<string, MapNode>();
 
@@ -46,7 +49,7 @@ public class MapManager : MonoBehaviour
     {
         if (unlockedNodes.Count == 0)
         {
-            unlockedNodes.Add("A");
+            unlockedNodes.Add("A"); // starting node
         }
     }
 
@@ -60,12 +63,17 @@ public class MapManager : MonoBehaviour
 
     public bool IsNodeUnlocked(string nodeID)
     {
-        return unlockedNodes.Contains(nodeID);
+        return unlockedNodes.Contains(nodeID) && !blockedNodes.Contains(nodeID);
     }
 
     public bool IsNodeCompleted(string nodeID)
     {
         return completedNodes.Contains(nodeID);
+    }
+
+    public bool IsNodeBlocked(string nodeID)
+    {
+        return blockedNodes.Contains(nodeID);
     }
 
     public void SelectNode(string nodeID)
@@ -77,7 +85,7 @@ public class MapManager : MonoBehaviour
         if (selectedNode == null)
             return;
 
-        // Lock out unchosen branch options
+        //Branch lock logic
         if (!string.IsNullOrEmpty(currentNodeID))
         {
             MapNode currentNode = GetNode(currentNodeID);
@@ -89,6 +97,11 @@ public class MapManager : MonoBehaviour
                     if (siblingID != nodeID)
                     {
                         unlockedNodes.Remove(siblingID);
+
+                        if (!blockedNodes.Contains(siblingID))
+                        {
+                            blockedNodes.Add(siblingID);
+                        }
                     }
                 }
             }
@@ -114,7 +127,7 @@ public class MapManager : MonoBehaviour
 
         foreach (string nextID in currentNode.nextNodeIDs)
         {
-            if (!unlockedNodes.Contains(nextID))
+            if (!unlockedNodes.Contains(nextID) && !blockedNodes.Contains(nextID))
             {
                 unlockedNodes.Add(nextID);
             }
