@@ -6,12 +6,13 @@ public class MapManager : MonoBehaviour
 {
     public static MapManager Instance;
 
-    public string currentNode = "";
-    public List<string> completedNodes = new List<string>();
-    public List<string> unlockedNodes = new List<string>();
+    public List<MapNode> mapNodes = new List<MapNode>();
 
-    private Dictionary<string, string> nodeToScene = new Dictionary<string, string>();
-    private Dictionary<string, List<string>> nodeConnections = new Dictionary<string, List<string>>();
+    public string currentNodeID = "";
+    public List<string> unlockedNodes = new List<string>();
+    public List<string> completedNodes = new List<string>();
+
+    private Dictionary<string, MapNode> nodeLookup = new Dictionary<string, MapNode>();
 
     private void Awake()
     {
@@ -19,7 +20,8 @@ public class MapManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            SetupMap();
+            BuildLookup();
+            SetupRun();
         }
         else
         {
@@ -27,24 +29,33 @@ public class MapManager : MonoBehaviour
         }
     }
 
-    void SetupMap()
+    void BuildLookup()
     {
-        nodeToScene["A"] = "CombatScene1";
-        nodeToScene["B"] = "CombatScene2";
-        nodeToScene["C"] = "CombatScene3";
-        nodeToScene["D"] = "CombatScene4";
-        nodeToScene["E"] = "CombatScene4";
+        nodeLookup.Clear();
 
-        nodeConnections["A"] = new List<string> { "B", "C" };
-        nodeConnections["B"] = new List<string> { "D" };
-        nodeConnections["C"] = new List<string> { "E" };
-        nodeConnections["D"] = new List<string>();
-        nodeConnections["E"] = new List<string>();
+        foreach (MapNode node in mapNodes)
+        {
+            if (!nodeLookup.ContainsKey(node.id))
+            {
+                nodeLookup.Add(node.id, node);
+            }
+        }
+    }
 
+    void SetupRun()
+    {
         if (unlockedNodes.Count == 0)
         {
             unlockedNodes.Add("A");
         }
+    }
+
+    public MapNode GetNode(string nodeID)
+    {
+        if (nodeLookup.ContainsKey(nodeID))
+            return nodeLookup[nodeID];
+
+        return null;
     }
 
     public bool IsNodeUnlocked(string nodeID)
@@ -59,42 +70,53 @@ public class MapManager : MonoBehaviour
 
     public void SelectNode(string nodeID)
     {
-        if (!unlockedNodes.Contains(nodeID))
+        if (!IsNodeUnlocked(nodeID) || IsNodeCompleted(nodeID))
             return;
 
-        if (currentNode != "" && nodeConnections.ContainsKey(currentNode))
+        MapNode selectedNode = GetNode(nodeID);
+        if (selectedNode == null)
+            return;
+
+        // Lock out unchosen branch options
+        if (!string.IsNullOrEmpty(currentNodeID))
         {
-            foreach (string connectedNode in nodeConnections[currentNode])
+            MapNode currentNode = GetNode(currentNodeID);
+
+            if (currentNode != null && currentNode.nextNodeIDs.Count > 1)
             {
-                if (connectedNode != nodeID)
+                foreach (string siblingID in currentNode.nextNodeIDs)
                 {
-                    unlockedNodes.Remove(connectedNode);
+                    if (siblingID != nodeID)
+                    {
+                        unlockedNodes.Remove(siblingID);
+                    }
                 }
             }
         }
 
-        currentNode = nodeID;
-        SceneManager.LoadScene(nodeToScene[nodeID]);
+        currentNodeID = nodeID;
+        SceneManager.LoadScene(selectedNode.sceneName);
     }
 
     public void CompleteCurrentNode()
     {
-        if (currentNode == "")
+        if (string.IsNullOrEmpty(currentNodeID))
             return;
 
-        if (!completedNodes.Contains(currentNode))
+        if (!completedNodes.Contains(currentNodeID))
         {
-            completedNodes.Add(currentNode);
+            completedNodes.Add(currentNodeID);
         }
 
-        if (nodeConnections.ContainsKey(currentNode))
+        MapNode currentNode = GetNode(currentNodeID);
+        if (currentNode == null)
+            return;
+
+        foreach (string nextID in currentNode.nextNodeIDs)
         {
-            foreach (string nextNode in nodeConnections[currentNode])
+            if (!unlockedNodes.Contains(nextID))
             {
-                if (!unlockedNodes.Contains(nextNode))
-                {
-                    unlockedNodes.Add(nextNode);
-                }
+                unlockedNodes.Add(nextID);
             }
         }
     }

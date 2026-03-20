@@ -1308,7 +1308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58bca9cdfe2e38449bcb17a0c0a4dbf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeID: B
+  nodeID: Levelbtn B
 --- !u!1 &643915950
 GameObject:
   m_ObjectHideFlags: 0
@@ -2225,7 +2225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58bca9cdfe2e38449bcb17a0c0a4dbf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeID: C
+  nodeID: Levelbtn C
 --- !u!1001 &1033987079
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2964,7 +2964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58bca9cdfe2e38449bcb17a0c0a4dbf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeID: D
+  nodeID: Levelbtn D
 --- !u!1 &1320495148
 GameObject:
   m_ObjectHideFlags: 0
@@ -3536,9 +3536,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b782635909524a49a0e948bf5f1ac1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentNode: 
+  mapNodes:
+  - id: Levelbtn A
+    roomType: 0
+    sceneName: CombatScene
+    nextNodeIDs:
+    - Levelbtn B
+    - Levelbtn C
+  - id: Levelbtn B
+    roomType: 0
+    sceneName: CombatScene2
+    nextNodeIDs:
+    - Levelbtn D
+  - id: Levelbtn C
+    roomType: 0
+    sceneName: CombatScene3
+    nextNodeIDs:
+    - 
+    - 
+  - id: Levelbtn D
+    roomType: 2
+    sceneName: BossScene
+    nextNodeIDs: []
+  currentNodeID: 
+  unlockedNodes:
+  - Levelbtn A
   completedNodes: []
-  unlockedNodes: []
 --- !u!1 &1607943999
 GameObject:
   m_ObjectHideFlags: 0
@@ -4264,7 +4287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58bca9cdfe2e38449bcb17a0c0a4dbf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeID: A
+  nodeID: Levelbtn A
 --- !u!1001 &3940536627024088746
 PrefabInstance:
   m_ObjectHideFlags: 0
