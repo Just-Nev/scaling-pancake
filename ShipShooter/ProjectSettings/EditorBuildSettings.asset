@@ -23,6 +23,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Power Up Test.unity
     guid: be87ede29154b8946966771c4e61d488
+  - enabled: 1
+    path: Assets/Scenes/EnemyRooms/CombatScene1.unity
+    guid: cbc0e2a0c0276fb41ab17843ce5e8b3d
+  - enabled: 1
+    path: Assets/Scenes/EnemyRooms/CombatScene2.unity
+    guid: 9fabbef17fa067b4c89965ab06005a53
+  - enabled: 1
+    path: Assets/Scenes/EnemyRooms/CombatScene3.unity
+    guid: 3425cf340b5251a43973be14512f7bbb
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
