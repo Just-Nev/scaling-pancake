@@ -28,7 +28,7 @@ public class MapNodeButton : MonoBehaviour
 
         if (completed)
         {
-            image.color = Color.green;
+            image.color = Color.yellow;
         }
         else if (unlocked)
         {

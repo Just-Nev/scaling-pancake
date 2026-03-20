@@ -62,6 +62,17 @@ public class MapManager : MonoBehaviour
         if (!unlockedNodes.Contains(nodeID))
             return;
 
+        if (currentNode != "" && nodeConnections.ContainsKey(currentNode))
+        {
+            foreach (string connectedNode in nodeConnections[currentNode])
+            {
+                if (connectedNode != nodeID)
+                {
+                    unlockedNodes.Remove(connectedNode);
+                }
+            }
+        }
+
         currentNode = nodeID;
         SceneManager.LoadScene(nodeToScene[nodeID]);
     }

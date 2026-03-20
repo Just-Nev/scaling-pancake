@@ -711,7 +711,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 291605196988394322, guid: a653859fd0f3f6e42894313b504cf7dd, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5278576326540942535, guid: a653859fd0f3f6e42894313b504cf7dd, type: 3}
       propertyPath: m_Pivot.x
@@ -1205,7 +1205,7 @@ PrefabInstance:
     - target: {fileID: 686294387696616320, guid: 21db9842ef4e0874dafc7b84d39f5e7c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -6923665714414485347, guid: cad8255d94e6b3c4eb5482988c340c6c, type: 3}
+      objectReference: {fileID: 21300000, guid: 23921d136c1994d409c59162a5f3f7d8, type: 3}
     - target: {fileID: 3061112076664463565, guid: 21db9842ef4e0874dafc7b84d39f5e7c, type: 3}
       propertyPath: m_Name
       value: Levelbtn B
@@ -2122,7 +2122,7 @@ PrefabInstance:
     - target: {fileID: 686294387696616320, guid: 21db9842ef4e0874dafc7b84d39f5e7c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -6923665714414485347, guid: cad8255d94e6b3c4eb5482988c340c6c, type: 3}
+      objectReference: {fileID: 21300000, guid: 23921d136c1994d409c59162a5f3f7d8, type: 3}
     - target: {fileID: 3061112076664463565, guid: 21db9842ef4e0874dafc7b84d39f5e7c, type: 3}
       propertyPath: m_Name
       value: Levelbtn C
@@ -2240,7 +2240,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 291605196988394322, guid: a653859fd0f3f6e42894313b504cf7dd, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5278576326540942535, guid: a653859fd0f3f6e42894313b504cf7dd, type: 3}
       propertyPath: m_Pivot.x
@@ -4026,7 +4026,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 291605196988394322, guid: a653859fd0f3f6e42894313b504cf7dd, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5278576326540942535, guid: a653859fd0f3f6e42894313b504cf7dd, type: 3}
       propertyPath: m_Pivot.x
@@ -4413,7 +4413,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 291605196988394322, guid: a653859fd0f3f6e42894313b504cf7dd, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5278576326540942535, guid: a653859fd0f3f6e42894313b504cf7dd, type: 3}
       propertyPath: m_Pivot.x
