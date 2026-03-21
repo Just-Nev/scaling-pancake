@@ -23,6 +23,10 @@ public class MapManager : MonoBehaviour
     public string startNodeID = "A";
     public List<string> bossNodeIDs = new List<string>();
 
+    [Header("Special Room Counts")]
+    public int shopCount = 1;
+    public int upgradeRoomCount = 2;
+
     private Dictionary<string, MapNode> nodeLookup = new Dictionary<string, MapNode>();
     private bool isTransitioning = false;
 
@@ -60,6 +64,9 @@ public class MapManager : MonoBehaviour
 
     void RandomizeNodeTypes()
     {
+        // First pass: set everything to combat, except fixed special nodes
+        List<MapNode> eligibleNodes = new List<MapNode>();
+
         foreach (MapNode node in mapNodes)
         {
             if (node.id == startNodeID)
@@ -72,23 +79,45 @@ public class MapManager : MonoBehaviour
             }
             else
             {
-                node.roomType = GetRandomRoomType();
+                node.roomType = RoomType.Combat;
+                eligibleNodes.Add(node);
             }
 
             node.sceneName = GetSceneName(node.roomType);
         }
+
+        ShuffleList(eligibleNodes);
+
+        // Pick shop nodes
+        int shopsToAssign = Mathf.Min(shopCount, eligibleNodes.Count);
+        for (int i = 0; i < shopsToAssign; i++)
+        {
+            eligibleNodes[i].roomType = RoomType.Shop;
+            eligibleNodes[i].sceneName = GetSceneName(RoomType.Shop);
+        }
+
+        // Pick upgrade nodes from the remaining pool
+        int remainingStartIndex = shopsToAssign;
+        int remainingCount = eligibleNodes.Count - remainingStartIndex;
+        int upgradesToAssign = Mathf.Min(upgradeRoomCount, remainingCount);
+
+        for (int i = 0; i < upgradesToAssign; i++)
+        {
+            int index = remainingStartIndex + i;
+            eligibleNodes[index].roomType = RoomType.Upgrade;
+            eligibleNodes[index].sceneName = GetSceneName(RoomType.Upgrade);
+        }
     }
 
-    RoomType GetRandomRoomType()
+    void ShuffleList(List<MapNode> list)
     {
-        int roll = Random.Range(0, 100);
-
-        if (roll < 60)
-            return RoomType.Combat;
-        else if (roll < 85)
-            return RoomType.Shop;
-        else
-            return RoomType.Upgrade;
+        for (int i = 0; i < list.Count; i++)
+        {
+            int randomIndex = Random.Range(i, list.Count);
+            MapNode temp = list[i];
+            list[i] = list[randomIndex];
+            list[randomIndex] = temp;
+        }
     }
 
     string GetSceneName(RoomType roomType)
