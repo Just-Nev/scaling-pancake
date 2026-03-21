@@ -5429,11 +5429,13 @@ MonoBehaviour:
   - Levelbtn A
   completedNodes: []
   blockedNodes: []
-  sceneLoadDelay: 1
+  sceneLoadDelay: 1.75
   startNodeID: Levelbtn A
   bossNodeIDs:
   - Levelbtn E
   - Levelbtn H
+  shopCount: 1
+  upgradeRoomCount: 2
 --- !u!1001 &1561671187
 PrefabInstance:
   m_ObjectHideFlags: 0
