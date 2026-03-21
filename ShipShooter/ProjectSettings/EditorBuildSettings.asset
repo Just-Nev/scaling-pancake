@@ -41,6 +41,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelTransition.unity
     guid: a555b87873ae89143aa065b5c0f9ff56
+  - enabled: 1
+    path: Assets/Scenes/Upgrade/UpgradeScene.unity
+    guid: 76bbe36c63d9e2547a25028c01ac5bde
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

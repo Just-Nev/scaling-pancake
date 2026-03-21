@@ -886,6 +886,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5278576326540942535, guid: a653859fd0f3f6e42894313b504cf7dd, type: 3}
   m_PrefabInstance: {fileID: 165749253}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &246061005 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 686294387696616320, guid: 21db9842ef4e0874dafc7b84d39f5e7c, type: 3}
+  m_PrefabInstance: {fileID: 361699322}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &258967993 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3650325070058513525, guid: 7e28ca38a524f9d4da610e3f85f871a5, type: 3}
@@ -904,6 +915,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Time: 2
+--- !u!114 &335162861 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8633182759671106336, guid: 14b325f06673b5d498e2bd8208ff8752, type: 3}
+  m_PrefabInstance: {fileID: 1234683713}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &352927315 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 686294387696616320, guid: 21db9842ef4e0874dafc7b84d39f5e7c, type: 3}
+  m_PrefabInstance: {fileID: 1635601814}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &361699322
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1155,6 +1188,11 @@ MonoBehaviour:
   lockedColor: {r: 0.7132075, g: 0.7132075, b: 0.7132075, a: 1}
   completedColor: {r: 1, g: 0.9914491, b: 0.0056602955, a: 1}
   blockedColor: {r: 0.4716981, g: 0, b: 0, a: 1}
+  combatSprite: {fileID: 21300000, guid: 23921d136c1994d409c59162a5f3f7d8, type: 3}
+  shopSprite: {fileID: -8701215597346814302, guid: d81f3ee40efc4e4488aca376a3f53d12, type: 3}
+  bossSprite: {fileID: -6248741079362886434, guid: 5f968b0d2b49d0e4189b80a9b022492a, type: 3}
+  upgradeRoomSprite: {fileID: -6923665714414485347, guid: cad8255d94e6b3c4eb5482988c340c6c, type: 3}
+  iconImage: {fileID: 246061005}
 --- !u!1001 &365274599
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1406,6 +1444,11 @@ MonoBehaviour:
   lockedColor: {r: 0.7132075, g: 0.7132075, b: 0.7132075, a: 1}
   completedColor: {r: 1, g: 0.9914491, b: 0.0056602955, a: 1}
   blockedColor: {r: 0.4716981, g: 0, b: 0, a: 1}
+  combatSprite: {fileID: 21300000, guid: 23921d136c1994d409c59162a5f3f7d8, type: 3}
+  shopSprite: {fileID: -8701215597346814302, guid: d81f3ee40efc4e4488aca376a3f53d12, type: 3}
+  bossSprite: {fileID: -6248741079362886434, guid: 5f968b0d2b49d0e4189b80a9b022492a, type: 3}
+  upgradeRoomSprite: {fileID: -6923665714414485347, guid: cad8255d94e6b3c4eb5482988c340c6c, type: 3}
+  iconImage: {fileID: 936004457}
 --- !u!1001 &400307746
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1979,6 +2022,11 @@ MonoBehaviour:
   lockedColor: {r: 0.7132075, g: 0.7132075, b: 0.7132075, a: 1}
   completedColor: {r: 1, g: 0.9914491, b: 0.0056602955, a: 1}
   blockedColor: {r: 0.4716981, g: 0, b: 0, a: 1}
+  combatSprite: {fileID: 21300000, guid: 23921d136c1994d409c59162a5f3f7d8, type: 3}
+  shopSprite: {fileID: -8701215597346814302, guid: d81f3ee40efc4e4488aca376a3f53d12, type: 3}
+  bossSprite: {fileID: -6248741079362886434, guid: 5f968b0d2b49d0e4189b80a9b022492a, type: 3}
+  upgradeRoomSprite: {fileID: -6923665714414485347, guid: cad8255d94e6b3c4eb5482988c340c6c, type: 3}
+  iconImage: {fileID: 1973269836}
 --- !u!1 &553424325
 GameObject:
   m_ObjectHideFlags: 0
@@ -2419,6 +2467,22 @@ MonoBehaviour:
   lockedColor: {r: 0.7132075, g: 0.7132075, b: 0.7132075, a: 1}
   completedColor: {r: 1, g: 0.9914491, b: 0.0056602955, a: 1}
   blockedColor: {r: 0.4716981, g: 0, b: 0, a: 1}
+  combatSprite: {fileID: 21300000, guid: 23921d136c1994d409c59162a5f3f7d8, type: 3}
+  shopSprite: {fileID: -8701215597346814302, guid: d81f3ee40efc4e4488aca376a3f53d12, type: 3}
+  bossSprite: {fileID: -6248741079362886434, guid: 5f968b0d2b49d0e4189b80a9b022492a, type: 3}
+  upgradeRoomSprite: {fileID: -6923665714414485347, guid: cad8255d94e6b3c4eb5482988c340c6c, type: 3}
+  iconImage: {fileID: 1385024507}
+--- !u!114 &608416600 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 686294387696616320, guid: 21db9842ef4e0874dafc7b84d39f5e7c, type: 3}
+  m_PrefabInstance: {fileID: 1012592262}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &643915950
 GameObject:
   m_ObjectHideFlags: 0
@@ -2918,6 +2982,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &911922649 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8633182759671106336, guid: 14b325f06673b5d498e2bd8208ff8752, type: 3}
+  m_PrefabInstance: {fileID: 1685546133}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &919677211
 GameObject:
   m_ObjectHideFlags: 0
@@ -3265,6 +3340,22 @@ MonoBehaviour:
   lockedColor: {r: 0.7132075, g: 0.7132075, b: 0.7132075, a: 1}
   completedColor: {r: 1, g: 0.9914491, b: 0.0056602955, a: 1}
   blockedColor: {r: 0.4716981, g: 0, b: 0, a: 1}
+  combatSprite: {fileID: 21300000, guid: 23921d136c1994d409c59162a5f3f7d8, type: 3}
+  shopSprite: {fileID: -8701215597346814302, guid: d81f3ee40efc4e4488aca376a3f53d12, type: 3}
+  bossSprite: {fileID: -6248741079362886434, guid: 5f968b0d2b49d0e4189b80a9b022492a, type: 3}
+  upgradeRoomSprite: {fileID: -6923665714414485347, guid: cad8255d94e6b3c4eb5482988c340c6c, type: 3}
+  iconImage: {fileID: 1965591151}
+--- !u!114 &936004457 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 686294387696616320, guid: 21db9842ef4e0874dafc7b84d39f5e7c, type: 3}
+  m_PrefabInstance: {fileID: 365274599}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &943278608
 GameObject:
   m_ObjectHideFlags: 0
@@ -3691,6 +3782,11 @@ MonoBehaviour:
   lockedColor: {r: 0.7132075, g: 0.7132075, b: 0.7132075, a: 1}
   completedColor: {r: 1, g: 0.9914491, b: 0.0056602955, a: 1}
   blockedColor: {r: 0.4716981, g: 0, b: 0, a: 1}
+  combatSprite: {fileID: 21300000, guid: 23921d136c1994d409c59162a5f3f7d8, type: 3}
+  shopSprite: {fileID: -8701215597346814302, guid: d81f3ee40efc4e4488aca376a3f53d12, type: 3}
+  bossSprite: {fileID: -6248741079362886434, guid: 5f968b0d2b49d0e4189b80a9b022492a, type: 3}
+  upgradeRoomSprite: {fileID: -6923665714414485347, guid: cad8255d94e6b3c4eb5482988c340c6c, type: 3}
+  iconImage: {fileID: 608416600}
 --- !u!1 &1048722115
 GameObject:
   m_ObjectHideFlags: 0
@@ -4506,6 +4602,22 @@ MonoBehaviour:
   lockedColor: {r: 0.7132075, g: 0.7132075, b: 0.7132075, a: 1}
   completedColor: {r: 1, g: 0.9914491, b: 0.0056602955, a: 1}
   blockedColor: {r: 0.4716981, g: 0, b: 0, a: 1}
+  combatSprite: {fileID: 21300000, guid: 23921d136c1994d409c59162a5f3f7d8, type: 3}
+  shopSprite: {fileID: -8701215597346814302, guid: d81f3ee40efc4e4488aca376a3f53d12, type: 3}
+  bossSprite: {fileID: -6248741079362886434, guid: 5f968b0d2b49d0e4189b80a9b022492a, type: 3}
+  upgradeRoomSprite: {fileID: -6923665714414485347, guid: cad8255d94e6b3c4eb5482988c340c6c, type: 3}
+  iconImage: {fileID: 335162861}
+--- !u!114 &1252135689 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 686294387696616320, guid: 21db9842ef4e0874dafc7b84d39f5e7c, type: 3}
+  m_PrefabInstance: {fileID: 3789199765823468974}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1274282337
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4834,6 +4946,17 @@ RectTransform:
   m_AnchoredPosition: {x: -543.65765, y: 0}
   m_SizeDelta: {x: 175.19998, y: 156}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1385024507 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 686294387696616320, guid: 21db9842ef4e0874dafc7b84d39f5e7c, type: 3}
+  m_PrefabInstance: {fileID: 570684783}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1483348977
 GameObject:
   m_ObjectHideFlags: 0
@@ -5306,7 +5429,11 @@ MonoBehaviour:
   - Levelbtn A
   completedNodes: []
   blockedNodes: []
-  sceneLoadDelay: 0.5
+  sceneLoadDelay: 1
+  startNodeID: Levelbtn A
+  bossNodeIDs:
+  - Levelbtn E
+  - Levelbtn H
 --- !u!1001 &1561671187
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5903,6 +6030,11 @@ MonoBehaviour:
   lockedColor: {r: 0.7132075, g: 0.7132075, b: 0.7132075, a: 1}
   completedColor: {r: 1, g: 0.9914491, b: 0.0056602955, a: 1}
   blockedColor: {r: 0.4716981, g: 0, b: 0, a: 1}
+  combatSprite: {fileID: 21300000, guid: 23921d136c1994d409c59162a5f3f7d8, type: 3}
+  shopSprite: {fileID: -8701215597346814302, guid: d81f3ee40efc4e4488aca376a3f53d12, type: 3}
+  bossSprite: {fileID: -6248741079362886434, guid: 5f968b0d2b49d0e4189b80a9b022492a, type: 3}
+  upgradeRoomSprite: {fileID: -6923665714414485347, guid: cad8255d94e6b3c4eb5482988c340c6c, type: 3}
+  iconImage: {fileID: 352927315}
 --- !u!1001 &1652713999
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6232,6 +6364,11 @@ MonoBehaviour:
   lockedColor: {r: 0.7132075, g: 0.7132075, b: 0.7132075, a: 1}
   completedColor: {r: 1, g: 0.9914491, b: 0.0056602955, a: 1}
   blockedColor: {r: 0.4716981, g: 0, b: 0, a: 1}
+  combatSprite: {fileID: 21300000, guid: 23921d136c1994d409c59162a5f3f7d8, type: 3}
+  shopSprite: {fileID: -8701215597346814302, guid: d81f3ee40efc4e4488aca376a3f53d12, type: 3}
+  bossSprite: {fileID: -6248741079362886434, guid: 5f968b0d2b49d0e4189b80a9b022492a, type: 3}
+  upgradeRoomSprite: {fileID: -6923665714414485347, guid: cad8255d94e6b3c4eb5482988c340c6c, type: 3}
+  iconImage: {fileID: 911922649}
 --- !u!1 &1704925337
 GameObject:
   m_ObjectHideFlags: 0
@@ -6635,6 +6772,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5278576326540942535, guid: a653859fd0f3f6e42894313b504cf7dd, type: 3}
   m_PrefabInstance: {fileID: 1867598689}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1965591151 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 686294387696616320, guid: 21db9842ef4e0874dafc7b84d39f5e7c, type: 3}
+  m_PrefabInstance: {fileID: 922673056}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1973269836 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 686294387696616320, guid: 21db9842ef4e0874dafc7b84d39f5e7c, type: 3}
+  m_PrefabInstance: {fileID: 550220744}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2001199079
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6967,6 +7126,11 @@ MonoBehaviour:
   lockedColor: {r: 0.7132075, g: 0.7132075, b: 0.7132075, a: 1}
   completedColor: {r: 1, g: 0.9914491, b: 0.0056602955, a: 1}
   blockedColor: {r: 0.4716981, g: 0, b: 0, a: 1}
+  combatSprite: {fileID: 21300000, guid: 23921d136c1994d409c59162a5f3f7d8, type: 3}
+  shopSprite: {fileID: -8701215597346814302, guid: d81f3ee40efc4e4488aca376a3f53d12, type: 3}
+  bossSprite: {fileID: -6248741079362886434, guid: 5f968b0d2b49d0e4189b80a9b022492a, type: 3}
+  upgradeRoomSprite: {fileID: -6923665714414485347, guid: cad8255d94e6b3c4eb5482988c340c6c, type: 3}
+  iconImage: {fileID: 1252135689}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

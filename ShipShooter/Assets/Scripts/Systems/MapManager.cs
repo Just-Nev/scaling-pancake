@@ -19,6 +19,10 @@ public class MapManager : MonoBehaviour
     [Header("Scene Settings")]
     public float sceneLoadDelay = 0.5f;
 
+    [Header("Random Room Type Settings")]
+    public string startNodeID = "A";
+    public List<string> bossNodeIDs = new List<string>();
+
     private Dictionary<string, MapNode> nodeLookup = new Dictionary<string, MapNode>();
     private bool isTransitioning = false;
 
@@ -29,6 +33,7 @@ public class MapManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
+            RandomizeNodeTypes();
             BuildLookup();
             SetupRun();
         }
@@ -53,6 +58,60 @@ public class MapManager : MonoBehaviour
         isTransitioning = false;
     }
 
+    void RandomizeNodeTypes()
+    {
+        foreach (MapNode node in mapNodes)
+        {
+            if (node.id == startNodeID)
+            {
+                node.roomType = RoomType.Combat;
+            }
+            else if (bossNodeIDs.Contains(node.id))
+            {
+                node.roomType = RoomType.Boss;
+            }
+            else
+            {
+                node.roomType = GetRandomRoomType();
+            }
+
+            node.sceneName = GetSceneName(node.roomType);
+        }
+    }
+
+    RoomType GetRandomRoomType()
+    {
+        int roll = Random.Range(0, 100);
+
+        if (roll < 60)
+            return RoomType.Combat;
+        else if (roll < 85)
+            return RoomType.Shop;
+        else
+            return RoomType.Upgrade;
+    }
+
+    string GetSceneName(RoomType roomType)
+    {
+        switch (roomType)
+        {
+            case RoomType.Combat:
+                return "CombatScene";
+
+            case RoomType.Shop:
+                return "ShopScene";
+
+            case RoomType.Boss:
+                return "BossScene";
+
+            case RoomType.Upgrade:
+                return "UpgradeRoomScene";
+
+            default:
+                return "CombatScene";
+        }
+    }
+
     void BuildLookup()
     {
         nodeLookup.Clear();
@@ -68,9 +127,14 @@ public class MapManager : MonoBehaviour
 
     void SetupRun()
     {
-        if (unlockedNodes.Count == 0)
+        unlockedNodes.Clear();
+        completedNodes.Clear();
+        blockedNodes.Clear();
+        currentNodeID = "";
+
+        if (nodeLookup.ContainsKey(startNodeID))
         {
-            unlockedNodes.Add("A");
+            unlockedNodes.Add(startNodeID);
         }
     }
 
@@ -163,8 +227,6 @@ public class MapManager : MonoBehaviour
         if (selectedNode == null)
             return;
 
-        // Block only the unchosen branches.
-        // Merged nodes stay unblocked if they still have another valid parent.
         if (!string.IsNullOrEmpty(currentNodeID))
         {
             MapNode currentNode = GetNode(currentNodeID);
@@ -214,5 +276,11 @@ public class MapManager : MonoBehaviour
                 unlockedNodes.Add(nextID);
             }
         }
+    }
+
+    public void RerollNodeTypes()
+    {
+        RandomizeNodeTypes();
+        BuildLookup();
     }
 }
