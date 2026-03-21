@@ -1,9 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class MapNodeButton : MonoBehaviour
 {
     public string nodeID;
+
+    private bool isTransitioning = false;
 
     [Header("Colors (Edit in Inspector)")]
     public Color unlockedColor = Color.white;
@@ -66,6 +69,16 @@ public class MapNodeButton : MonoBehaviour
 
     private void OnClickNode()
     {
+        if (isTransitioning) return;
+        isTransitioning = true;
+
+        StartCoroutine(DelayedSelect());
+    }
+
+    IEnumerator DelayedSelect()
+    {
+        yield return new WaitForSeconds(0.5f); // match your animation time
+
         if (MapManager.Instance != null)
         {
             MapManager.Instance.SelectNode(nodeID);

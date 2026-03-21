@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,6 +15,9 @@ public class MapManager : MonoBehaviour
     public List<string> unlockedNodes = new List<string>();
     public List<string> completedNodes = new List<string>();
     public List<string> blockedNodes = new List<string>();
+
+    [Header("Scene Settings")]
+    public float sceneLoadDelay = 0.5f;
 
     private Dictionary<string, MapNode> nodeLookup = new Dictionary<string, MapNode>();
 
@@ -85,7 +89,7 @@ public class MapManager : MonoBehaviour
         if (selectedNode == null)
             return;
 
-        //Branch lock logic
+        // Branch lock logic
         if (!string.IsNullOrEmpty(currentNodeID))
         {
             MapNode currentNode = GetNode(currentNodeID);
@@ -108,7 +112,15 @@ public class MapManager : MonoBehaviour
         }
 
         currentNodeID = nodeID;
-        SceneManager.LoadScene(selectedNode.sceneName);
+
+        // delayed scene load
+        StartCoroutine(LoadSceneWithDelay(selectedNode.sceneName));
+    }
+
+    IEnumerator LoadSceneWithDelay(string sceneName)
+    {
+        yield return new WaitForSeconds(sceneLoadDelay);
+        SceneManager.LoadScene(sceneName);
     }
 
     public void CompleteCurrentNode()
