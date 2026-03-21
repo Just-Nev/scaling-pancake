@@ -5274,8 +5274,8 @@ MonoBehaviour:
     nextNodeIDs:
     - Levelbtn H
   - id: Levelbtn G 2
-    roomType: 0
-    sceneName: CombatScene
+    roomType: 1
+    sceneName: ShopScene
     nextNodeIDs:
     - Levelbtn H
   - id: Levelbtn H
