@@ -2,5 +2,6 @@ public enum RoomType
 {
     Combat,
     Shop,
-    Boss
+    Boss,
+    upgrade
 }

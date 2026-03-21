@@ -21,6 +21,6 @@ public class PlayGame : MonoBehaviour
     }
     void PlayButtonWithDelay()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(11);
     }
 }

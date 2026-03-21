@@ -97,6 +97,39 @@ public class MapManager : MonoBehaviour
         return blockedNodes.Contains(nodeID);
     }
 
+    List<string> GetParentNodeIDs(string childNodeID)
+    {
+        List<string> parents = new List<string>();
+
+        foreach (MapNode node in mapNodes)
+        {
+            if (node.nextNodeIDs.Contains(childNodeID))
+            {
+                parents.Add(node.id);
+            }
+        }
+
+        return parents;
+    }
+
+    bool AreAllParentsBlocked(string nodeID)
+    {
+        List<string> parentIDs = GetParentNodeIDs(nodeID);
+
+        if (parentIDs.Count == 0)
+            return false;
+
+        foreach (string parentID in parentIDs)
+        {
+            if (!blockedNodes.Contains(parentID))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     void BlockBranch(string nodeID)
     {
         if (blockedNodes.Contains(nodeID))
@@ -111,7 +144,10 @@ public class MapManager : MonoBehaviour
 
         foreach (string nextID in node.nextNodeIDs)
         {
-            BlockBranch(nextID);
+            if (AreAllParentsBlocked(nextID))
+            {
+                BlockBranch(nextID);
+            }
         }
     }
 
@@ -127,6 +163,8 @@ public class MapManager : MonoBehaviour
         if (selectedNode == null)
             return;
 
+        // Block only the unchosen branches.
+        // Merged nodes stay unblocked if they still have another valid parent.
         if (!string.IsNullOrEmpty(currentNodeID))
         {
             MapNode currentNode = GetNode(currentNodeID);
