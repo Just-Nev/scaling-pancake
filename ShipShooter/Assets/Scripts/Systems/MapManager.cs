@@ -20,6 +20,7 @@ public class MapManager : MonoBehaviour
     public float sceneLoadDelay = 0.5f;
 
     private Dictionary<string, MapNode> nodeLookup = new Dictionary<string, MapNode>();
+    private bool isTransitioning = false;
 
     private void Awake()
     {
@@ -27,6 +28,7 @@ public class MapManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
             BuildLookup();
             SetupRun();
         }
@@ -34,6 +36,21 @@ public class MapManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        isTransitioning = false;
     }
 
     void BuildLookup()
@@ -53,7 +70,7 @@ public class MapManager : MonoBehaviour
     {
         if (unlockedNodes.Count == 0)
         {
-            unlockedNodes.Add("A"); // starting node
+            unlockedNodes.Add("A");
         }
     }
 
@@ -80,8 +97,29 @@ public class MapManager : MonoBehaviour
         return blockedNodes.Contains(nodeID);
     }
 
+    void BlockBranch(string nodeID)
+    {
+        if (blockedNodes.Contains(nodeID))
+            return;
+
+        blockedNodes.Add(nodeID);
+        unlockedNodes.Remove(nodeID);
+
+        MapNode node = GetNode(nodeID);
+        if (node == null)
+            return;
+
+        foreach (string nextID in node.nextNodeIDs)
+        {
+            BlockBranch(nextID);
+        }
+    }
+
     public void SelectNode(string nodeID)
     {
+        if (isTransitioning)
+            return;
+
         if (!IsNodeUnlocked(nodeID) || IsNodeCompleted(nodeID))
             return;
 
@@ -89,7 +127,6 @@ public class MapManager : MonoBehaviour
         if (selectedNode == null)
             return;
 
-        // Branch lock logic
         if (!string.IsNullOrEmpty(currentNodeID))
         {
             MapNode currentNode = GetNode(currentNodeID);
@@ -100,20 +137,15 @@ public class MapManager : MonoBehaviour
                 {
                     if (siblingID != nodeID)
                     {
-                        unlockedNodes.Remove(siblingID);
-
-                        if (!blockedNodes.Contains(siblingID))
-                        {
-                            blockedNodes.Add(siblingID);
-                        }
+                        BlockBranch(siblingID);
                     }
                 }
             }
         }
 
         currentNodeID = nodeID;
+        isTransitioning = true;
 
-        // delayed scene load
         StartCoroutine(LoadSceneWithDelay(selectedNode.sceneName));
     }
 
