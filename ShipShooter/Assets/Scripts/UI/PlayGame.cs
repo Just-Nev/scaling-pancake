@@ -21,6 +21,6 @@ public class PlayGame : MonoBehaviour
     }
     void PlayButtonWithDelay()
     {
-        SceneManager.LoadScene(11);
+        SceneManager.LoadScene("LevelTransition");
     }
 }

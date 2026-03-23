@@ -134,7 +134,7 @@ public class MapManager : MonoBehaviour
                 return "BossScene";
 
             case RoomType.Upgrade:
-                return "UpgradeRoom";
+                return "UpgradeScene";
 
             default:
                 return "CombatScene";
