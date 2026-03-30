@@ -1,6 +1,7 @@
-using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SpaceInvaderBoss : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public class SpaceInvaderBoss : MonoBehaviour
     public float flashDuration = 0.1f;
     public float shakeIntensity = 6f;
     public float shakeTime = 0.1f;
+
+    [Header("NextLevel")]
+    public GameObject nexLevel;
 
     private bool movingRight = true;
     private Camera cam;
@@ -168,6 +172,8 @@ public class SpaceInvaderBoss : MonoBehaviour
         // Fade the health bar first
         yield return StartCoroutine(FadeHealthBar());
 
+        nexLevel.SetActive(true);
+
         // Now disable boss
         gameObject.SetActive(false);
     }
@@ -185,6 +191,7 @@ public class SpaceInvaderBoss : MonoBehaviour
 
         healthBarUI.gameObject.SetActive(false);
     }
+
 }
 
 
