@@ -98,7 +98,7 @@ public class DiceRoller : MonoBehaviour
     {
         if (quanText != null)
         {
-            quanText.text = rollsRemaining.ToString();
+            quanText.text = "x" + rollsRemaining.ToString();
 
             var colors = rollButton.colors;
             quanText.color = rollsRemaining <= 0
