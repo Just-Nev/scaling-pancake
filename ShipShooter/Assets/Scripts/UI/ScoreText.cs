@@ -11,9 +11,8 @@ public class ScoreText : MonoBehaviour
         MoneyText.text = RunManager.Instance.currentMoney.ToString();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void upText()
     {
-        
+        MoneyText.text = RunManager.Instance.currentMoney.ToString();
     }
 }

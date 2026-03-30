@@ -472,9 +472,37 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1519721235}
+    - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1961212398}
+    - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: DoubleFireRate
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: FireRatePickup, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1713,9 +1741,25 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1961212398}
+    - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 1519721235}
+    - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DoubleFireRate
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: FireRatePickup, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2994,7 +3038,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -3005,6 +3049,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1519721235}
@@ -3013,11 +3061,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1191319063}
     - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1961212398}
+    - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
@@ -3029,12 +3085,20 @@ PrefabInstance:
       value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: DoubleFireRate
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: FireRatePickup, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
@@ -3050,6 +3114,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291156001078246946, guid: 183d78fb889e1904caca8ad5af0d7544, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
