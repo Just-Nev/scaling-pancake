@@ -16,3 +16,5 @@ MonoBehaviour:
   moveSpeed: 5
   fireRate: 0.6
   damage: 1
+  money: 0
+  reroll: 1

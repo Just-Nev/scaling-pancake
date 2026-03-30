@@ -13,6 +13,7 @@ public class RunManager : MonoBehaviour
     public float currentFireRate;
     public float currentDamage;
     public float currentMoney;
+    public int currentReroll;
 
     private void Awake()
     {
@@ -35,6 +36,7 @@ public class RunManager : MonoBehaviour
         currentFireRate = baseStats.fireRate;
         currentDamage = baseStats.damage;
         currentMoney = baseStats.money;
+        currentReroll = baseStats.reroll;
     }
 
     public void EndRun()

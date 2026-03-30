@@ -9,4 +9,5 @@ public class PlayerBaseStats : ScriptableObject
     public float fireRate = 0.2f;
     public float damage = 1f;
     public float money = 0f;
+    public int reroll = 1;
 }

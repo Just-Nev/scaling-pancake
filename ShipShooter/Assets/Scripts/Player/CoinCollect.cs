@@ -7,6 +7,11 @@ public class CoinCollect : MonoBehaviour
     public int score = 0;
     public TextMeshProUGUI scoreText;
 
+    void Start()
+    {
+        scoreText.text = RunManager.Instance.currentMoney.ToString();
+    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Coin"))
@@ -18,7 +23,7 @@ public class CoinCollect : MonoBehaviour
 
             // Update TextMeshPro
             if (scoreText != null)
-                scoreText.text = score.ToString();
+                scoreText.text = RunManager.Instance.currentMoney.ToString();
         }
     }
 }
