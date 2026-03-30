@@ -14,7 +14,7 @@ public class CoinCollect : MonoBehaviour
             Destroy(col.gameObject);
 
             // Add score
-            score++;
+            RunManager.Instance.currentMoney += 1; 
 
             // Update TextMeshPro
             if (scoreText != null)

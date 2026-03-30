@@ -3796,6 +3796,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1048722116}
+  - component: {fileID: 1048722117}
   m_Layer: 5
   m_Name: Coin
   m_TagString: Untagged
@@ -3825,6 +3826,19 @@ RectTransform:
   m_AnchoredPosition: {x: 8.801025, y: 5.056732}
   m_SizeDelta: {x: 283.7188, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1048722117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048722115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 736aff20a334d0f4aa54f434065c3edd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoneyText: {fileID: 1060280604}
 --- !u!1 &1060280602
 GameObject:
   m_ObjectHideFlags: 0

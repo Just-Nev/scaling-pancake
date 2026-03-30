@@ -12,6 +12,7 @@ public class RunManager : MonoBehaviour
     public float currentMoveSpeed;
     public float currentFireRate;
     public float currentDamage;
+    public float currentMoney;
 
     private void Awake()
     {
@@ -33,6 +34,7 @@ public class RunManager : MonoBehaviour
         currentMoveSpeed = baseStats.moveSpeed;
         currentFireRate = baseStats.fireRate;
         currentDamage = baseStats.damage;
+        currentMoney = baseStats.money;
     }
 
     public void EndRun()

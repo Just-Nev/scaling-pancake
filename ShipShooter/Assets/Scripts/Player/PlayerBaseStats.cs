@@ -8,5 +8,5 @@ public class PlayerBaseStats : ScriptableObject
     public float moveSpeed = 5f;
     public float fireRate = 0.2f;
     public float damage = 1f;
-
+    public float money = 0f;
 }
